@@ -6,5 +6,17 @@
     <string name="ingrese_contrasena">Ingrese su contraseña</string>
     <string name="se_ha_olvidado_de_contrasena">Se ha olvidado de su contraseña</string>
     <string name="restaurar_contrasena">Restaurar Contraseña</string>
+    <string name="el_usuario_no_registrado">El usuario no está registrado</string>
+    <string name="este_valor_requerido">Este valor es requerido</string>
+
+    <string name="info_reestablecer_contrasena">A su correo le llegará un link el cual le permitirá reestablecer su contraseña al seleccionar ACEPTAR.</string>
+    <string name="hay_un_error_actualizar_contra">Hay un error en la actualización, por favor intentarlo de nuevo.</string>
+    <string name="las_contrasena_actual_no_coincide">La contraseña actual no es la correcta.</string>
+    <string name="a_ocurrido_un_error">A ocurrido un error, por favor intentalo de nuevo.</string>
+    <string name="se_le_ha_enviado_un_correo">Se le ha enviado un correo para restablecer su contraseña, por favor espere a que este llegue.</string>}
+    <string name="a_ocurrido_un_error_afuera">A ocurrido un error, revise si el correo escrito si ha estado registrado.</string>
+
+    <string name="cancelar">Cancelar</string>
+    <string name="aceptar">Aceptar</string>
 
 </resources>
