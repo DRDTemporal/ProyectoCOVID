@@ -13,7 +13,8 @@
     <string name="hay_un_error_actualizar_contra">Hay un error en la actualización, por favor intentarlo de nuevo.</string>
     <string name="las_contrasena_actual_no_coincide">La contraseña actual no es la correcta.</string>
     <string name="a_ocurrido_un_error">A ocurrido un error, por favor intentalo de nuevo.</string>
-    <string name="se_le_ha_enviado_un_correo">Se le ha enviado un correo para restablecer su contraseña, por favor espere a que este llegue.</string>}
+    <string name="se_le_ha_enviado_un_correo">Se le ha enviado un correo para restablecer su contraseña, por favor espere a que este llegue.</string>
+    }
     <string name="a_ocurrido_un_error_afuera">A ocurrido un error, revise si el correo escrito si ha estado registrado.</string>
 
     <string name="cancelar">Cancelar</string>
@@ -31,15 +32,39 @@
     <string name="contrasena_muy_corta_m2">La contraseña es muy corta, por favor ingrese una contraseña  igual o mayor a 8 caracteres.</string>
     <string name="revise_datos">Por favor revise sus datos, algunos son requeridos.</string>
     <string name="mensaje_de_inicio">Por favor ingresa con tu nueva cuenta.</string>
-    <string name="aceptar">Aceptar</string>
     <string name="registrar">Registrar</string>
     <string name="actualizar">Actualizar</string>
     <string name="actualizar_contrasena">Actualizar o reinciar contraseña.</string>
     <string name="todo">Todo</string>
-    <string name="cancelar">cancelar</string>
     <string name="Edad">Edad</string>
     <string name="Identificacion">Identificación</string>
     <string name="direccion">Dirección</string>
     <string name="telefono">Telefono</string>
+
+
+    <String name="preguntass">¿Ha estado por fuera de país en los últimos 14 dias o ha tenido
+        contacto estrecho con caso confirmado de COVID-19?
+    </String>
+    <string name="preguntaPrincipal">De acuerdo a su capacidad normal para respirar, en este momento ¿Presenta mayor dificulatad?</string>
+    <string name="botonSi">Si</string>
+    <string name="botonNo">No</string>
+    <string name="paciente5">Paciente con riesgo de IRA Grave</string>
+    <string name="urgencias">Urgencias</string>
+    <string name="pregunta2">¿Ha tenido: fiebre, tos, dolor de garganta, dolor muscular, náuseas, vómito o diarrea, sin dificultad respiratoria?</string>
+    <string name="Paciente4">Paciente con infección respiratoria aguda, baja probabilidad de covid-19</string>
+    <String name="sintomatico">Sintomático con Nexo epidemiológico</String>
+    <string name="manejodesintomas">Manejo de síntomas en casa, con hidratación, lavado de manos, tapabocas y SIGNOS DE ALARMA</string>
+    <string name="manejodelossintomas">Manejo de los síntomas según indicación telefónica+ prueba covid</string>
+    <string name="Asintomatico">Asintomático con nexo epidemiológico</string>
+    <string name="aislamientoencasa">Aislamiento en casa(por 14 días)</string>
+    <string name="recomendaciones">Recomendaciones para el caso y la familia</string>
+    <string name="seguimientosclinicos">Seguimiento clínico(sera contactado telefonicamente)</string>
+    <string name="tienefactoresde">¿Tiene factores de riesgo? \n\n Mayores de 60 años o en las personas con comorbilidad o condiciones, tales como: \n\n * Diabetes * Enfermedad cardiovascular(incluye HTA y AVC) * VIH * CANCER * enfermedades o medicamentos que debiliten sus defensas *EPOC * Fumandores</string>
+    <string name="asintomaticosinnexo">Asintomático sin nexo epidemiológico con factores de riesgo </string>
+    <string name="aislamientointesificado">Aislamiento intensificado</string>
+    <string name="asintomaticosin">Asintomático sin nexo epidemiológico sin factores de riesgo</string>
+    <string name="distanciamiento">Distanciamiento social y medidas prebentivas</string>
+    <string name="pregunta3">¿Ha estado por fuera de país en los últimos 14 dias o ha tenido contacto estrecho con caso confirmado de COVID-19?</string>
+
 
 </resources>
