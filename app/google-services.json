@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "396593743195",
+    "firebase_url": "https://fine-gradient-218116.firebaseio.com",
+    "project_id": "fine-gradient-218116",
+    "storage_bucket": "fine-gradient-218116.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396593743195:android:156acb5221dfd12f79067e",
+        "android_client_info": {
+          "package_name": "com.proyecto.asn.ccovid19"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "396593743195-47gt3tb509vge4t09r19idm836fshomm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.proyecto.asn.ccovid19",
+            "certificate_hash": "ab147a7555aa7e976ca0f13cc8ac3837c8a25097"
+          }
+        },
+        {
+          "client_id": "396593743195-i5a3tg6plmedqp7fjnudj1ugluqslc0j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi6nIu45dH8WCvSizkU4jVy2T-HRUka5s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "396593743195-i5a3tg6plmedqp7fjnudj1ugluqslc0j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
