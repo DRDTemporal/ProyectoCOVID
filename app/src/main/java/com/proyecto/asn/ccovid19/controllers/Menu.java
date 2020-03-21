@@ -2,6 +2,7 @@ package com.proyecto.asn.ccovid19.controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,11 +37,13 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnSi:
-
+                txtRiesgo.setVisibility(View.VISIBLE);
+                txtUrgencias.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.btnNo:
-
+                Intent intent = new Intent(Menu.this, SegundaPregunta.class);
+                startActivity(intent);
                 break;
         }
     }
