@@ -7,4 +7,27 @@
     <string name="se_ha_olvidado_de_contrasena">Se ha olvidado de su contraseña</string>
     <string name="restaurar_contrasena">Restaurar Contraseña</string>
 
+    <string name="registro_usuario">Registro de Usuario</string>
+    <string name="correo_electronico">Correo electrónico(*)</string>
+    <string name="contrasena">Contraseña(*)</string>
+    <string name="confirmar_contrasena">Confirmar contraseña(*)</string>
+
+    <string name="nombres">Nombres</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="contrasenas_no_coinciden">Las contraseñas no coinciden</string>
+    <string name="contrasena_muy_corta">La contraseña es muy corta.</string>
+    <string name="contrasena_muy_corta_m2">La contraseña es muy corta, por favor ingrese una contraseña  igual o mayor a 8 caracteres.</string>
+    <string name="revise_datos">Por favor revise sus datos, algunos son requeridos.</string>
+    <string name="mensaje_de_inicio">Por favor ingresa con tu nueva cuenta.</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="registrar">Registrar</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="actualizar_contrasena">Actualizar o reinciar contraseña.</string>
+    <string name="todo">Todo</string>
+    <string name="cancelar">cancelar</string>
+    <string name="Edad">Edad</string>
+    <string name="Identificacion">Identificación</string>
+    <string name="direccion">Dirección</string>
+    <string name="telefono">Telefono</string>
+
 </resources>
