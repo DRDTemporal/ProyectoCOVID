@@ -22,7 +22,12 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -97,6 +102,7 @@
                 android:layout_margin="16dp"
                 android:hint="@string/Edad"
                 android:importantForAutofill="no"
+                android:inputType="number"
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black" />
 
@@ -108,7 +114,7 @@
                 android:layout_margin="16dp"
                 android:importantForAutofill="no"
                 android:textColor="@android:color/black"
-                android:textColorHint="@android:color/black"></Spinner>
+                android:textColorHint="@android:color/black" />
 
             <EditText
                 android:id="@+id/identificacion"
@@ -117,17 +123,27 @@
                 android:layout_margin="16dp"
                 android:hint="@string/Identificacion"
                 android:importantForAutofill="no"
+                android:inputType="number"
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black" />
 
             <Spinner
-                android:id="@+id/tipoDeCiudad"
+                android:id="@+id/spDepartamento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:importantForAutofill="no"
                 android:textColor="@android:color/black"
-                android:textColorHint="@android:color/black"></Spinner>
+                android:textColorHint="@android:color/black" />
+
+            <Spinner
+                android:id="@+id/spMunicipio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:importantForAutofill="no"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black" />
 
             <EditText
                 android:id="@+id/txtDireccion"
@@ -136,6 +152,7 @@
                 android:layout_margin="16dp"
                 android:hint="@string/direccion"
                 android:importantForAutofill="no"
+                android:inputType="textPersonName"
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black" />
 
@@ -146,6 +163,7 @@
                 android:layout_margin="16dp"
                 android:hint="@string/telefono"
                 android:importantForAutofill="no"
+                android:inputType="number"
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black" />
 
@@ -184,7 +202,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
