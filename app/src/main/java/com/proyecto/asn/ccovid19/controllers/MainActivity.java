@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     private void hideProgressDialog() {
         findViewById(R.id.pbLogin).setVisibility(INVISIBLE);
         btnLogin.setEnabled(true);
-        btnRegistrar.setEnabled(true);
+            btnRegistrar.setEnabled(true);
         txtEmail.setEnabled(true);
         txtContrasena.setEnabled(true);
     }
