@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.proyecto.asn.ccovid19.R;
 
-public class Menu extends AppCompatActivity implements View.OnClickListener {
+public class MenuP extends AppCompatActivity implements View.OnClickListener {
     Button btnSi, btnNo;
     TextView txtRiesgo, txtUrgencias;
 
@@ -42,7 +42,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
                 break;
 
             case R.id.btnNo:
-                Intent intent = new Intent(Menu.this, SegundaPregunta.class);
+                Intent intent = new Intent(MenuP.this, SegundaPregunta.class);
                 startActivity(intent);
                 break;
         }
