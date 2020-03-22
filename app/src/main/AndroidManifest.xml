@@ -13,7 +13,7 @@
         <activity android:name=".controllers.CuartaPregunta" />
         <activity android:name=".controllers.TerceraPregunta" />
         <activity android:name=".controllers.SegundaPregunta" />
-        <activity android:name=".controllers.Menu" />
+        <activity android:name=".controllers.MenuP" />
         <activity android:name=".controllers.Registro" />
         <activity android:name=".controllers.Splash" />
         <activity android:name=".controllers.MainActivity">

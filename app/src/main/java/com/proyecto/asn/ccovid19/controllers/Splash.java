@@ -206,7 +206,7 @@ public class Splash extends AppCompatActivity {
             finish();
 
         } else {
-            Intent intent = new Intent(Splash.this,MainActivity.class);
+            Intent intent = new Intent(Splash.this,MenuP.class);
             startActivity(intent);
             finish();
         }
