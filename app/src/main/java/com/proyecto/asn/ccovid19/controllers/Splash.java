@@ -12,6 +12,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.widget.ImageView;
@@ -25,6 +26,7 @@ import com.proyecto.asn.ccovid19.models.Lugar;
 import com.proyecto.asn.ccovid19.utilities.CityService;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -41,7 +43,9 @@ public class Splash extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        obtenerLugares();
+        leerLugares();
+        inizialite();
+        inizialiteFirebase();
     }
 
     // Método para inicializar las vistas y variables.
@@ -59,42 +63,52 @@ public class Splash extends AppCompatActivity {
     }
 
 
-    private void obtenerLugares() {
+    private void leerLugares() {
         Paper.init(this);
         List<Lugar> lugares = Paper.book().read("lugares");
-        if (lugares.size()==0) {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(LINK_API)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
-            CityService cityService = retrofit.create(CityService.class);
-            Call<List<Lugar>> callLugares = cityService.getLugares();
-            callLugares.enqueue(new Callback<List<Lugar>>() {
-                @Override
-                public void onResponse(Call<List<Lugar>> call, Response<List<Lugar>> response) {
-                    if(!response.isSuccessful()){
-
-                        Toast.makeText(Splash.this, "Error al obtener la información. Por favor cierre y abra la app nuevamente", Toast.LENGTH_LONG).show();
-                        iniciarSplash();
-
-                    }else{
-
-                        guardarEnLaBaseDeDatos(response.body());
-
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<List<Lugar>> call, Throwable t) {
-                    Toast.makeText(Splash.this, "Error al obtener la información. Por favor cierre y abra la app nuevamente", Toast.LENGTH_LONG).show();
-                }
-            });
-        }else{
-            iniciarSplash();
+        try {
+            if(lugares.size()<1){
+                obtenerLugares();
+            }else{
+                iniciarSplash();
+            }
+        }catch (Exception e){
+            obtenerLugares();
         }
 
 
+
+    }
+
+    private void obtenerLugares() {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(LINK_API)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        CityService cityService = retrofit.create(CityService.class);
+        Call<List<Lugar>> callLugares = cityService.getLugares();
+        callLugares.enqueue(new Callback<List<Lugar>>() {
+            @Override
+            public void onResponse(Call<List<Lugar>> call, Response<List<Lugar>> response) {
+                if(!response.isSuccessful()){
+
+                    Toast.makeText(Splash.this, "Error al obtener la información. Por favor cierre y abra la app nuevamente", Toast.LENGTH_LONG).show();
+
+
+                }else{
+                    guardarEnLaBaseDeDatos(response.body());
+                    iniciarSplash();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Lugar>> call, Throwable t) {
+                Toast.makeText(Splash.this, "Error al obtener la información. Por favor cierre y abra la app nuevamente", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void guardarEnLaBaseDeDatos(List<Lugar> lugares) {
@@ -201,12 +215,12 @@ public class Splash extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            Intent intent = new Intent(Splash.this,MainActivity.class);
+            Intent intent = new Intent(Splash.this,MenuP.class);
             startActivity(intent);
             finish();
 
         } else {
-            Intent intent = new Intent(Splash.this,MenuP.class);
+            Intent intent = new Intent(Splash.this,MainActivity.class);
             startActivity(intent);
             finish();
         }

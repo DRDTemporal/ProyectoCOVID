@@ -42,9 +42,6 @@
     <string name="select_municipio">Seleccione un municipio...</string>
 
 
-    <String name="preguntass">¿Ha estado por fuera de país en los últimos 14 dias o ha tenido
-        contacto estrecho con caso confirmado de COVID-19?
-    </String>
     <string name="preguntaPrincipal">De acuerdo a su capacidad normal para respirar, en este momento ¿Presenta mayor dificulatad?</string>
     <string name="botonSi">Si</string>
     <string name="botonNo">No</string>
@@ -52,7 +49,6 @@
     <string name="urgencias">Urgencias</string>
     <string name="pregunta2">¿Ha tenido: fiebre, tos, dolor de garganta, dolor muscular, náuseas, vómito o diarrea, sin dificultad respiratoria?</string>
     <string name="Paciente4">Paciente con infección respiratoria aguda, baja probabilidad de covid-19</string>
-    <String name="sintomatico">Sintomático con Nexo epidemiológico</String>
     <string name="manejodesintomas">Manejo de síntomas en casa, con hidratación, lavado de manos, tapabocas y SIGNOS DE ALARMA</string>
     <string name="manejodelossintomas">Manejo de los síntomas según indicación telefónica+ prueba covid</string>
     <string name="Asintomatico">Asintomático con nexo epidemiológico</string>
@@ -65,6 +61,8 @@
     <string name="asintomaticosin">Asintomático sin nexo epidemiológico sin factores de riesgo</string>
     <string name="distanciamiento">Distanciamiento social y medidas prebentivas</string>
     <string name="pregunta3">¿Ha estado por fuera de país en los últimos 14 dias o ha tenido contacto estrecho con caso confirmado de COVID-19?</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="aceptar">Aceptar</string>
 
 
 </resources>

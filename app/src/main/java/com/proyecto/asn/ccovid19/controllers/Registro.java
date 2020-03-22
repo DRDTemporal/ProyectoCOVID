@@ -49,7 +49,7 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
 
-    private List<Lugar> lugares;
+    private List<Lugar> lugares = new ArrayList<>();
     private List<String> departamentos = new ArrayList<>(), municipios = new ArrayList<>();
     boolean activadoDepartamento, activadoMunicipio, activadoTipoID;
     @Override
@@ -81,6 +81,10 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
         btnRegistrar.setOnClickListener(this);
         btnCancelar.setOnClickListener(this);
 
+        spDepartamento.setOnItemSelectedListener(this);
+        spMunicipio.setOnItemSelectedListener(this);
+        spTIpoId.setOnItemSelectedListener(this);
+
         spMunicipio.setEnabled(false);
         activadoDepartamento = false;
         activadoMunicipio = false;
@@ -97,21 +101,24 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
 
     private void inputDataToSpinners(){
         Paper.init(this);
-        lugares = Paper.book().read("contacts");
+        lugares = Paper.book().read("lugares");
         anadirDepartamentos();
         anadirTipoID();
-
+        municipios.add(getString(R.string.select_municipio));
+        spMunicipio.setAdapter(obtenerAdaptador(municipios));
 
     }
 
     private void anadirDepartamentos() {
         boolean existe;
         departamentos.add(getString(R.string.select_departamento));
-        for ( Lugar lugar :  lugares ) {
+        Lugar lugar;
+        for ( int i =0; i<lugares.size(); i++ ) {
+            lugar = lugares.get(i);
             existe = false;
             String departamento = lugar.getDepartamento();
-            for (int i=0; i<departamentos.size(); i++){
-                if (departamento.equals(lugar.getDepartamento())){
+            for (int j=0; j<departamentos.size(); j++){
+                if (departamento.equals(departamentos.get(j))){
                     existe = true;
                     break;
                 }
@@ -138,7 +145,7 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
         }
 
 
-        spDepartamento.setAdapter(obtenerAdaptador(municipios));
+        spMunicipio.setAdapter(obtenerAdaptador(municipios));
     }
 
     private void anadirTipoID() {
@@ -207,9 +214,7 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
                     updateUI(null);
                 }
 
-                // [START_EXCLUDE]
                 hideProgressDialog();
-                // [END_EXCLUDE]
             }
         });
     }
@@ -422,10 +427,10 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        switch (view.getId()){
+        switch (parent.getId()){
             case R.id.spDepartamento:
                 if(position>0){
-                    anadirMunicipio(departamentos.get(position-1));
+                    anadirMunicipio(departamentos.get(position));
                     spMunicipio.setEnabled(true);
                     activadoDepartamento = true;
                 }else {

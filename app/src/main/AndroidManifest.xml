@@ -15,13 +15,14 @@
         <activity android:name=".controllers.SegundaPregunta" />
         <activity android:name=".controllers.MenuP" />
         <activity android:name=".controllers.Registro" />
-        <activity android:name=".controllers.Splash" />
-        <activity android:name=".controllers.MainActivity">
+        <activity android:name=".controllers.Splash" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".controllers.MainActivity">
         </activity>
     </application>
 
