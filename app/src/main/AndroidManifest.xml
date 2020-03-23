@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.proyecto.asn.ccovid19">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -10,20 +11,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".controllers.Resultados"></activity>
         <activity android:name=".controllers.CuartaPregunta" />
         <activity android:name=".controllers.TerceraPregunta" />
         <activity android:name=".controllers.SegundaPregunta" />
         <activity android:name=".controllers.MenuP" />
         <activity android:name=".controllers.Registro" />
-        <activity android:name=".controllers.Splash" >
+        <activity android:name=".controllers.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controllers.MainActivity">
-        </activity>
+        <activity android:name=".controllers.MainActivity"></activity>
     </application>
 
 </manifest>
