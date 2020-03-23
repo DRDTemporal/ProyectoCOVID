@@ -51,7 +51,7 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
 
     private List<Lugar> lugares = new ArrayList<>();
     private List<String> departamentos = new ArrayList<>(), municipios = new ArrayList<>();
-    boolean activadoDepartamento, activadoMunicipio, activadoTipoID;
+    boolean activadoDepartamento = false , activadoMunicipio = false , activadoTipoID = false ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -186,6 +186,7 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
 
     }
 
+    
     // Método el cual hará los procesos para el registro de usuario..
     private void registarUsuario() {
         if (compareToPasswords()) {
@@ -222,7 +223,6 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
     private boolean validateForm() {
         boolean valid = true;
         List<String> campos = new ArrayList<>();
-
 
         if (TextUtils.isEmpty(txtEmail.getText().toString())) {
             txtEmail.setError(getString(R.string.este_valor_requerido));
@@ -266,12 +266,12 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
             txtEdad.setError(null);
         }
 
-        if (TextUtils.isEmpty(txtIdentificacion.getText().toString())) {
+       /* if (TextUtils.isEmpty(txtIdentificacion.getText().toString())) {
             txtIdentificacion.setError(getString(R.string.este_valor_requerido));
             valid = false;
         } else {
             txtIdentificacion.setError(null);
-        }
+        }*/
 
         if (TextUtils.isEmpty(txtDireccion.getText().toString())) {
             txtDireccion.setError(getString(R.string.este_valor_requerido));
@@ -287,21 +287,14 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
             txtTelefono.setError(null);
         }
 
-
-
         if(!activadoDepartamento){
             campos.add("Departamento");
-
             valid = false;
-        }else{
-
         }
 
         if(!activadoMunicipio){
             campos.add("Municipio");
             valid = false;
-        }else{
-
         }
 
         if(!activadoTipoID){
@@ -309,12 +302,11 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
             valid = false;
         }
 
-
         String mensaje = "";
         if (campos.size()==1 ){
             mensaje = "El campo "+ campos.get(0) + " no ha sido seleccionado.";
         }else if (campos.size() ==2){
-            mensaje = "Los campos "+ campos.get(0) + "y " + campos.get(1)  + " no han sido seleccionados.";
+            mensaje = "Los campos "+ campos.get(0) + " y " + campos.get(1)  + " no han sido seleccionados.";
         }else if (campos.size() ==3){
             mensaje = "Los campos "+ campos.get(0) + ", " + campos.get(1)  + "y " + campos.get(2) + " no han sido seleccionados.";
         }
@@ -368,7 +360,14 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
         txtConfirmarContrasena.setEnabled(false);
         txtNombres.setEnabled(false);
         txtApellidos.setEnabled(false);
-
+        txtEdad.setEnabled(false);
+        txtIdentificacion.setEnabled(false);
+        txtDireccion.setEnabled(false);
+        txtTelefono.setEnabled(false);
+        spDepartamento.setEnabled(false);
+        spMunicipio.setEnabled(false);
+        spTIpoId.setEnabled(false);
+        pbRegistrar.setEnabled(false);
 
     }
 
@@ -382,6 +381,14 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
         txtConfirmarContrasena.setEnabled(true);
         txtNombres.setEnabled(true);
         txtApellidos.setEnabled(true);
+        txtEdad.setEnabled(true);
+        txtIdentificacion.setEnabled(true);
+        txtDireccion.setEnabled(true);
+        txtTelefono.setEnabled(true);
+        spDepartamento.setEnabled(true);
+        spMunicipio.setEnabled(true);
+        spTIpoId.setEnabled(true);
+        pbRegistrar.setEnabled(true);
 
     }
 
@@ -443,7 +450,7 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
                 if(position>0){
                     activadoMunicipio = true;
                 }else {
-                    activadoDepartamento = false;
+                    activadoMunicipio = false;
                 }
                 break;
 

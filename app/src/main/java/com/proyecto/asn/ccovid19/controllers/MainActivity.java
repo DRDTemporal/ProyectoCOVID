@@ -79,20 +79,18 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
         showProgressDialog();
 
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    updateUI(user);
-                    findViewById(R.id.pbLogin).setVisibility(INVISIBLE);
-                } else {
-                    Log.w("Inicio de sesión", "signInWithEmail:failure", task.getException());
-                    Toast.makeText(MainActivity.this, R.string.el_usuario_no_registrado,
-                            Toast.LENGTH_SHORT).show();
-                    updateUI(null);
-                    hideProgressDialog();
-                }
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, task -> {
+            if (task.isSuccessful()) {
+                FirebaseUser user = mAuth.getCurrentUser();
+                updateUI(user);
+                findViewById(R.id.pbLogin).setVisibility(INVISIBLE);
+
+            } else {
+                Log.w("Inicio de sesión", "signInWithEmail:failure", task.getException());
+                Toast.makeText(MainActivity.this, R.string.el_usuario_no_registrado,
+                        Toast.LENGTH_SHORT).show();
+                updateUI(null);
+                hideProgressDialog();
             }
         });
     }
@@ -141,9 +139,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     // Método para ingresar a la pantalla de inicio.
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            /*Intent intent = new Intent(MainActivity.this,Mai.class);
+            Intent intent = new Intent(MainActivity.this,MenuP.class);
             startActivity(intent);
-            finish();*/
+            finish();
 
         } else {
             Toast.makeText(this, "El usuario no está registrado", Toast.LENGTH_SHORT).show();
