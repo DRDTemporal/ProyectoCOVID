@@ -42,7 +42,7 @@
     <string name="select_municipio">Seleccione un municipio...</string>
 
 
-    <string name="preguntaPrincipal">De acuerdo a su capacidad normal para respirar, en este momento ¿Presenta mayor dificulatad?</string>
+    <string name="preguntaPrincipal">¿Siente usted AHOGO o dificultad para respirar?</string>
     <string name="botonSi">Si</string>
     <string name="botonNo">No</string>
     <string name="paciente5">Paciente con riesgo de IRA Grave</string>
@@ -66,7 +66,7 @@
 
 
     <string name="avisoInicial">Aviso INICIAL \n “Esta aplicación NO HACE UN DIAGNÓSTICO de Infección por COVID 19 u otras patologías. Se usará para guiarlo/a según los datos que usted  va a suministrar y en caso de ser necesario brindarle acompañamiento”</string>
-     <string name="condicionesLegales">Da su consentimiento expreso e informado para llevar a cabo el Tratamiento de sus datos personales por parte del personal relacionado con la atención y recepción de información en el departamento del Cauca frente a casos potenciales de COVID-19, el cual NO tiene ningún fin comercial y será de uso exclusivo en el campo de la salud sin fines lucrativos.</string>
+    <string name="condicionesLegales">Da su consentimiento expreso e informado para llevar a cabo el Tratamiento de sus datos personales por parte del personal relacionado con la atención y recepción de información en el departamento del Cauca frente a casos potenciales de COVID-19, el cual NO tiene ningún fin comercial y será de uso exclusivo en el campo de la salud sin fines lucrativos.</string>
 
 
 </resources>

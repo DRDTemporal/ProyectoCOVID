@@ -26,8 +26,6 @@ public class MenuP extends AppCompatActivity implements View.OnClickListener {
         btnNo = findViewById(R.id.btnNo);
         btnSi.setOnClickListener(this);
         btnNo.setOnClickListener(this);
-        txtRiesgo = findViewById(R.id.txtRiesgo);
-        txtUrgencias = findViewById(R.id.txtUrgencias);
         txtRiesgo.setVisibility(View.INVISIBLE);
         txtUrgencias.setVisibility(View.INVISIBLE);
 
