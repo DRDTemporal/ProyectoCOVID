@@ -1,12 +1,15 @@
 package com.proyecto.asn.ccovid19.models;
 
 public class Persona {
-    private String nombres, apellidos, tipoID, id, telefono, departamento, municipio, edad, email, direccion;
+    private String skey = "";
+    private String nombres = "", apellidos = "", tipoID = "", id = "", telefono = "", departamento = "", municipio = "", edad = "", email = "", direccion = "";
+    private int estado = 0;
 
     public Persona() {
     }
 
-    public Persona(String nombres, String apellidos, String tipoID, String id, String telefono, String departamento, String municipio, String edad, String email, String direccion) {
+    public Persona(String skey, String nombres, String apellidos, String tipoID, String id, String telefono, String departamento, String municipio, String edad, String email, String direccion, int estado) {
+        this.skey = skey;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.tipoID = tipoID;
@@ -17,6 +20,15 @@ public class Persona {
         this.edad = edad;
         this.email = email;
         this.direccion = direccion;
+        this.estado = estado;
+    }
+
+    public String getSkey() {
+        return skey;
+    }
+
+    public void setSkey(String skey) {
+        this.skey = skey;
     }
 
     public String getNombres() {
@@ -97,6 +109,14 @@ public class Persona {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
 
