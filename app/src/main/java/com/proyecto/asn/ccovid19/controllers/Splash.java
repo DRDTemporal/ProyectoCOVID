@@ -48,7 +48,6 @@ public class Splash extends AppCompatActivity {
         inizialiteFirebase();
     }
 
-    // Método para inicializar las vistas y variables.
     private void inizialite(){
         imageView = findViewById(R.id.imageView);
         imageView.setVisibility(View.INVISIBLE);
@@ -56,12 +55,10 @@ public class Splash extends AppCompatActivity {
         valor=0;
     }
 
-    // Método para inicializar Firebase.
     private void inizialiteFirebase() {
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
     }
-
 
     private void leerLugares() {
         Paper.init(this);

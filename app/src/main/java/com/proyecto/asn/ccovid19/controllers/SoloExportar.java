@@ -162,7 +162,7 @@ public class SoloExportar extends AppCompatActivity {
                         tmpPersona.getEdad(),
                         tmpPersona.getEmail(),
                         tmpPersona.getDireccion(),
-                        String.valueOf(tmpPersona.getEstado()),
+                        String.valueOf(tmpPersona.getCaso()),
 
 
                 };

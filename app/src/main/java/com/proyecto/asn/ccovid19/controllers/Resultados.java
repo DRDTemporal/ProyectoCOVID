@@ -16,12 +16,29 @@ public class Resultados extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_resultados);
+        segun_caso();
         inicializar();
+    }
+
+    private void segun_caso(){
+        switch (Preguntas.caso){
+            case 6 :
+                setContentView(R.layout.item_caso6);
+                break;
+
+            case 5:
+                setContentView(R.layout.item_caso5);
+                break;
+
+            default:
+                setContentView(R.layout.activity_resultados);
+
+        }
     }
 
     private void inicializar() {
         contenedor = findViewById(R.id.Contenedor);
+
 
     }
 }

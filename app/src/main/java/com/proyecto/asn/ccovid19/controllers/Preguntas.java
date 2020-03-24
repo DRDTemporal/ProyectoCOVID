@@ -14,7 +14,7 @@ import com.proyecto.asn.ccovid19.R;
 public class Preguntas extends AppCompatActivity implements View.OnClickListener {
     LinearLayout primeraPregunta, SegundaPregunta,segundaPregunta2, TerceraPregunta, CuartaPregunta;
     Button btnSi, btnNo,btnSi2, btnNo2,btnSi21, btnNo21,btnSi3, btnNo3, btnSi4, btnNo4;
-
+    public static int caso =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,15 +77,27 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
         btnNo4.setEnabled(false);
     }
 
+
+    private  void pasarAResultado(){
+        startActivity(new Intent(Preguntas.this, Resultados.class));
+        guardarCaso();
+        finish();
+    }
+
+    private void guardarCaso() {
+        //TODO guardar caso
+
+    }
+
     @Override
     public void onClick(View view) {
 
         switch (view.getId()){
 
             case R.id.btnSi:
-                Intent intent = new Intent(Preguntas.this, Resultados.class);
-                startActivity(intent);
-                finish();
+                /*Si cambia caso 6*/
+                caso = 6;
+                pasarAResultado();
                 break;
 
             case R.id.btnNo:
@@ -98,10 +110,11 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
                 break;
 
             case R.id.btnSi2:
+
                 segundaPregunta2.setVisibility(View.VISIBLE);
                 btnSi21.setVisibility(View.VISIBLE);
                 btnNo21.setVisibility(View.VISIBLE);
-                btnNo21.setEnabled(true);
+                btnSi21.setEnabled(true);
                 btnNo21.setEnabled(true);
                 break;
 
@@ -115,23 +128,20 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
                 break;
 
             case R.id.btnSi21:
-                Intent intent2 = new Intent(Preguntas.this, Resultados.class);
-                startActivity(intent2);
-                finish();
+                caso = 5;
+                pasarAResultado();
                 break;
 
 
             case R.id.btnNo21:
-                Intent intent3 = new Intent(Preguntas.this, Resultados.class);
-                startActivity(intent3);
-                finish();
+                caso = 4;
+                pasarAResultado();
                 break;
 
 
             case R.id.btnSi3:
-                Intent intent4 = new Intent(Preguntas.this, Resultados.class);
-                startActivity(intent4);
-                finish();
+                caso = 3;
+                pasarAResultado();
                 break;
 
             case R.id.btnNo3:
@@ -143,20 +153,19 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
                 break;
 
             case R.id.btnSi4:
-
-                Intent intent5 = new Intent(Preguntas.this, Resultados.class);
-                startActivity(intent5);
-                finish();
+                caso = 2;
+                pasarAResultado();
                 break;
 
             case R.id.btnNo4:
-                Intent intent6 = new Intent(Preguntas.this, Resultados.class);
-                startActivity(intent6);
-                finish();
+                caso = 1;
+                pasarAResultado();
                 break;
 
 
         }
 
     }
+
+
 }

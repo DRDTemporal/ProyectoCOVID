@@ -26,6 +26,6 @@ public class Constants {
             "Edad",
             "Email",
             "Dirección",
-            "Estado"
+            "Caso"
     };
 }
