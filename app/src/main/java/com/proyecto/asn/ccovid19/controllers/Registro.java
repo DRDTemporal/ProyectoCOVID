@@ -185,7 +185,6 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
 
 
     }
-
     
     // Método el cual hará los procesos para el registro de usuario..
     private void registarUsuario() {
