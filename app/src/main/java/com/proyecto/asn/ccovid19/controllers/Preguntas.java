@@ -1,32 +1,48 @@
 package com.proyecto.asn.ccovid19.controllers;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.proyecto.asn.ccovid19.R;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class Preguntas extends AppCompatActivity implements View.OnClickListener {
     LinearLayout primeraPregunta, SegundaPregunta,segundaPregunta2, TerceraPregunta, CuartaPregunta;
     Button btnSi, btnNo,btnSi2, btnNo2,btnSi21, btnNo21,btnSi3, btnNo3, btnSi4, btnNo4;
+    DatabaseReference mDatabase;
+    FirebaseAuth mAuth;
     public static int caso =0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preguntas);
         inicializar();
+        inicializarFirebase();
+        administrador();
 
     }
 
-    //METODO PARA INICIALIZAR VALORES
     private void inicializar() {
-
-
         primeraPregunta = findViewById(R.id.PrimeraPregunta);
         SegundaPregunta = findViewById(R.id.SegundaPregunta);
         segundaPregunta2 = findViewById(R.id.SegundaPregunta2);
@@ -77,15 +93,56 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
         btnNo4.setEnabled(false);
     }
 
+    private  void  inicializarFirebase(){
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+    }
 
     private  void pasarAResultado(){
-        startActivity(new Intent(Preguntas.this, Resultados.class));
-        guardarCaso();
-        finish();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage(R.string.mensaje_confirmacion)
+                .setTitle(R.string.alerta_titulo);
+
+        builder.setPositiveButton(R.string.aceptar, (dialog, id) -> {
+            startActivity(new Intent(Preguntas.this, Resultados.class));
+            guardarCaso();
+            finish();
+        });
+        builder.setNegativeButton(R.string.cancelar, (dialog, id) -> {
+        });
+
+        builder.setCancelable(true);
+
+        builder.create();
+        builder.show();
+
+
+
     }
 
     private void guardarCaso() {
-        //TODO guardar caso
+
+        mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).setValue(caso);
+
+    }
+
+    private void administrador(){
+        mDatabase.child("persona").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Toast.makeText(Preguntas.this, "SI", Toast.LENGTH_SHORT).show();
+                findViewById(R.id.btnAExportar).setVisibility(View.VISIBLE);
+                findViewById(R.id.btnAExportar).setOnClickListener(v -> {
+                    startActivity(new Intent(Preguntas.this, SoloExportar.class));
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
@@ -95,7 +152,6 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
         switch (view.getId()){
 
             case R.id.btnSi:
-                /*Si cambia caso 6*/
                 caso = 6;
                 pasarAResultado();
                 break;
@@ -123,7 +179,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
                 TerceraPregunta.setVisibility(View.VISIBLE);
                 btnSi3.setVisibility(View.VISIBLE);
                 btnNo3.setVisibility(View.VISIBLE);
-                btnNo3.setEnabled(true);
+                btnSi3.setEnabled(true);
                 btnNo3.setEnabled(true);
                 break;
 
@@ -148,7 +204,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
                 CuartaPregunta.setVisibility(View.VISIBLE);
                 btnSi4.setVisibility(View.VISIBLE);
                 btnNo4.setVisibility(View.VISIBLE);
-                btnNo4.setEnabled(true);
+                btnSi4.setEnabled(true);
                 btnNo4.setEnabled(true);
                 break;
 

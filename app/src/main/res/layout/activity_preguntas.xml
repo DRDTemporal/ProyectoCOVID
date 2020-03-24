@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".controllers.Preguntas">
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAExportar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/googleg_standard_color_18" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,239 +27,239 @@
         <LinearLayout
             android:id="@+id/PrimeraPregunta"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="vertical"
+                android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/preguntaPrincipal"
                     android:textColor="@android:color/black"
-                    android:textStyle="bold"
                     android:textSize="20sp"
-                    android:text="@string/preguntaPrincipal"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
+                android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:layout_weight="2"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btnSi"
                     android:layout_width="wrap_content"
-                    android:text="@string/botonSi"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content"/>
+                    android:text="@string/botonSi" />
 
                 <Button
                     android:id="@+id/btnNo"
                     android:layout_width="wrap_content"
-                    android:text="@string/botonNo"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content"/>
+                    android:text="@string/botonNo" />
 
 
             </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/SegundaPregunta"
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
-
             <LinearLayout
+                android:id="@+id/SegundaPregunta"
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_margin="16dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:text="@string/pregunta2"/>
+                    android:layout_margin="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pregunta2"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnSi2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/botonSi" />
+
+                    <Button
+                        android:id="@+id/btnNo2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/botonNo" />
+
+
+                </LinearLayout>
+
+
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_margin="16dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/btnSi2"
-                    android:layout_width="wrap_content"
-                    android:text="@string/botonSi"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"/>
-
-                <Button
-                    android:id="@+id/btnNo2"
-                    android:layout_width="wrap_content"
-                    android:text="@string/botonNo"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"/>
-
-
-            </LinearLayout>
-
-
-
-        </LinearLayout>
 
 
             <LinearLayout
                 android:id="@+id/SegundaPregunta2"
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@string/pregunta3"
                         android:textColor="@android:color/black"
-                        android:textStyle="bold"
                         android:textSize="20sp"
-                        android:text="@string/pregunta3"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:layout_weight="2"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/btnSi21"
                         android:layout_width="wrap_content"
-                        android:text="@string/botonSi"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_height="wrap_content"/>
+                        android:text="@string/botonSi" />
 
                     <Button
                         android:id="@+id/btnNo21"
                         android:layout_width="wrap_content"
-                        android:text="@string/botonNo"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_height="wrap_content"/>
+                        android:text="@string/botonNo" />
 
 
                 </LinearLayout>
-
 
 
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="vertical"
                 android:id="@+id/terceraPregunta"
-                android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@string/pregunta3"
                         android:textColor="@android:color/black"
-                        android:textStyle="bold"
                         android:textSize="20sp"
-                        android:text="@string/pregunta3"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:layout_weight="2"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/btnSi3"
                         android:layout_width="wrap_content"
-                        android:text="@string/botonSi"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_height="wrap_content"/>
+                        android:text="@string/botonSi" />
 
                     <Button
                         android:id="@+id/btnNo3"
                         android:layout_width="wrap_content"
-                        android:text="@string/botonNo"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_height="wrap_content"/>
+                        android:text="@string/botonNo" />
 
 
                 </LinearLayout>
             </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:id="@+id/cuartaPregunta"
-            android:layout_height="wrap_content">
-
             <LinearLayout
+                android:id="@+id/cuartaPregunta"
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_margin="16dp"
-                android:layout_height="wrap_content">
-                <TextView
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:text="@string/tienefactoresde"/>
+                    android:layout_margin="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tienefactoresde"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnSi4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/botonSi" />
+
+                    <Button
+                        android:id="@+id/btnNo4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/botonNo" />
+
+
+                </LinearLayout>
+
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_margin="16dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/btnSi4"
-                    android:layout_width="wrap_content"
-                    android:text="@string/botonSi"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"/>
-
-                <Button
-                    android:id="@+id/btnNo4"
-                    android:layout_width="wrap_content"
-                    android:text="@string/botonNo"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"/>
-
-
-            </LinearLayout>
-
-        </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

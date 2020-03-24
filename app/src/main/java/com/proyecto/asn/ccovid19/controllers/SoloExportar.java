@@ -10,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 import static com.proyecto.asn.ccovid19.utilities.Constants.DATOS_PERSONA;
 
@@ -51,8 +53,8 @@ public class SoloExportar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solo_exportar);
-        inizialite();
         inizialiteFirebaseApp();
+        inizialite();
 
     }
 
@@ -60,9 +62,9 @@ public class SoloExportar extends AppCompatActivity {
     private void inizialiteFirebaseApp() {
         FirebaseApp.initializeApp(this);
         try {
-            FirebaseDatabase.getInstance().setPersistenceEnabled(false);
             reference = FirebaseDatabase.getInstance().getReference();
             mAuth = FirebaseAuth.getInstance();
+            FirebaseDatabase.getInstance().setPersistenceEnabled(false);
         } catch (Exception ignored) {}
 
     }
@@ -129,21 +131,27 @@ public class SoloExportar extends AppCompatActivity {
         @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat(getResources().getString(R.string.formato_fecha_exportar));
         String fecha = dateFormat.format(new Date());
 
-        Iterator<Persona> it = allPersonas.iterator();
-        List<Persona> tmpDatos = new ArrayList<>();
+        List<Persona> tmpDatos = allPersonas;
 
-        File exportDir = new File(Environment.getExternalStorageDirectory(), getResources().getString(R.string.app_name));
+        File exportDir = new File(Environment.DIRECTORY_DOCUMENTS, getResources().getString(R.string.app_name));
         if (!exportDir.exists())
-        {
-            exportDir.mkdirs();
-        }
+            try {
+                exportDir.mkdirs();
+                Log.e("Carpeta", exportDir.getPath());
+            }catch (Exception e){
+                Log.e("Error carpeta",e.getMessage());
+            }
 
-        File archivo = new File(exportDir, getResources().getString(R.string.app_name)+"-"+fecha+getResources().getString(R.string.tipo_archivo));
+
+
+        File archivo = new File(Environment.DIRECTORY_DOCUMENTS, "CCovid.csv");
         try {
             archivo.createNewFile();
         } catch (IOException e) {
+            Log.e("Error archivo", Objects.requireNonNull(e.getMessage()));
             Toast.makeText(this, R.string.error_crear_archivo, Toast.LENGTH_SHORT).show();
         }
+
 
         try {
 

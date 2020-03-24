@@ -72,7 +72,7 @@
     <string name="error_crear_archivo">No se ha podido crear el archivo</string>
     <string name="error_obtener_datos">Hay un error a la hora de obterner los datos, por favor revise su conexión</string>
     <string name="no_hay_datos_registrados">No hay registros en la base de datos.</string>
-    <string name="carpeta_ccovid_19">El archivo está en la carpeta CCovid-19 y se llama: </string>
+    <string name="carpeta_ccovid_19">El archivo está en  Documentos/CCovid-19 y se llama: </string>
     <string name="formato_fecha_exportar">dd-MM-yyyy-HH-mm-ss</string>
     <string name="tipo_archivo">.csv</string>
     <string name="caso6">"Diríjase a URGENCIAS Será llamado en máximo 30 min Guarde la calma y lleve: *Tapabocas  *1 Solo acompañante *Ropa en bolsa *Carnet *Dinero  "</string>
@@ -83,6 +83,8 @@
     <string name="caso3">"Asintomático sin nexo epidemiológico con factores de Riesgo  "</string>
     <string name="caso2">"Asintomático sin nexo epidemiológico con factores de Riesgo  \n\n Aislamiento intensificado  "</string>
     <string name="caso1">"Asintomático sin nexo epidemiológico sin factores de Riesgo  \n\n  Distanciamiento social  y Medidas preventivas  "</string>
+    <string name="mensaje_confirmacion">¿Está seguro de que sus sitomas son esos?</string>
+    <string name="alerta_titulo">Alerta</string>
 
 
 </resources>

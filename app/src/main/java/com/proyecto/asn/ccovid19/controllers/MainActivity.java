@@ -1,6 +1,7 @@
 package com.proyecto.asn.ccovid19.controllers;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
@@ -209,14 +210,35 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 break;
 
             case R.id.btnRegistrar:
-                Intent intent = new Intent(MainActivity.this, Registro.class);
-                startActivity(intent);
+                enviarARegistro();
                 break;
 
             case R.id.txtOlvidoContrasena:
                 reestablecerContrasena();
                 break;
         }
+
+    }
+
+    private void enviarARegistro() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage(R.string.condicionesLegales)
+                .setTitle(R.string.alerta_titulo);
+
+        builder.setPositiveButton(R.string.aceptar, (dialog, id) -> {
+            Intent intent = new Intent(MainActivity.this, Registro.class);
+            startActivity(intent);
+        });
+        builder.setNegativeButton(R.string.cancelar, (dialog, id) -> {
+        });
+
+        builder.setCancelable(true);
+
+        builder.create();
+        builder.show();
+
 
     }
 
