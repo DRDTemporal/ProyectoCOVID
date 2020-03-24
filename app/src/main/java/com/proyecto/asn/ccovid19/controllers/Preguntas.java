@@ -15,7 +15,6 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
     LinearLayout primeraPregunta, SegundaPregunta,segundaPregunta2, TerceraPregunta, CuartaPregunta;
     Button btnSi, btnNo,btnSi2, btnNo2,btnSi21, btnNo21,btnSi3, btnNo3, btnSi4, btnNo4;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +25,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
 
     //METODO PARA INICIALIZAR VALORES
     private void inicializar() {
+
 
         primeraPregunta = findViewById(R.id.PrimeraPregunta);
         SegundaPregunta = findViewById(R.id.SegundaPregunta);
