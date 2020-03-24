@@ -14,4 +14,18 @@ public class Constants {
             "MS - Menor sin identificación",
             "AS - Adulto sin identidad",
     };
+
+    public  static  final  String [] DATOS_PERSONA = {
+            "ID",
+            "Tipo ID",
+            "Nombres",
+            "Apellidos",
+            "Teléfono",
+            "Departamento",
+            "Municipio",
+            "Edad",
+            "Email",
+            "Dirección",
+            "Estado"
+    };
 }

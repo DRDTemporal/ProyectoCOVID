@@ -186,7 +186,6 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
 
     }
 
-    
     // Método el cual hará los procesos para el registro de usuario..
     private void registarUsuario() {
         if (compareToPasswords()) {
@@ -206,7 +205,6 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
                     // Sign in success, update UI with the signed-in user's information
                     FirebaseUser user = mAuth.getCurrentUser();
                     updateUI(user);
-                    databaseReference.child("persona").push().setValue(datosPersona());
                 } else {
                     // If sign in fails, display a message to the user.
                     Toast.makeText(Registro.this, "Error en la creación de usuario.",
@@ -395,6 +393,7 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
     // Método que permite verificar que el usuario ha sido creado.
     private void updateUI(FirebaseUser user) {
         if (user != null) {
+            databaseReference.child("persona").child(user.getUid()).setValue(datosPersona());
             Toast.makeText(this, R.string.mensaje_de_inicio, Toast.LENGTH_SHORT).show();
             finish();
 

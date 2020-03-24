@@ -67,6 +67,14 @@
 
     <string name="avisoInicial">Aviso INICIAL \n “Esta aplicación NO HACE UN DIAGNÓSTICO de Infección por COVID 19 u otras patologías. Se usará para guiarlo/a según los datos que usted  va a suministrar y en caso de ser necesario brindarle acompañamiento”</string>
     <string name="condicionesLegales">Da su consentimiento expreso e informado para llevar a cabo el Tratamiento de sus datos personales por parte del personal relacionado con la atención y recepción de información en el departamento del Cauca frente a casos potenciales de COVID-19, el cual NO tiene ningún fin comercial y será de uso exclusivo en el campo de la salud sin fines lucrativos.</string>
+    <string name="exportar">Exportar</string>
+    <string name="mensaje_exportar">Se va a crear un archivo CSV en la carpeta en CCovid-19 con los datos de todos los usuarios registrados</string>
+    <string name="error_crear_archivo">No se ha podido crear el archivo</string>
+    <string name="error_obtener_datos">Hay un error a la hora de obterner los datos, por favor revise su conexión</string>
+    <string name="no_hay_datos_registrados">No hay registros en la base de datos.</string>
+    <string name="carpeta_ccovid_19">El archivo está en la carpeta CCovid-19 y se llama: </string>
+    <string name="formato_fecha_exportar">dd-MM-yyyy-HH-mm-ss</string>
+    <string name="tipo_archivo">.csv</string>
 
 
 </resources>
