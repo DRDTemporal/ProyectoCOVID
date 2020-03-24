@@ -30,6 +30,22 @@ public class Resultados extends AppCompatActivity {
                 setContentView(R.layout.item_caso5);
                 break;
 
+            case 4:
+                setContentView(R.layout.item_caso4);
+                break;
+
+            case 3:
+                setContentView(R.layout.item_caso3);
+                break;
+
+            case 2:
+                setContentView(R.layout.item_caso2);
+                break;
+
+            case 1:
+                setContentView(R.layout.item_caso1);
+                break;
+
             default:
                 setContentView(R.layout.activity_resultados);
 
