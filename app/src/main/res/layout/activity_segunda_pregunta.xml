@@ -40,14 +40,14 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/txtBotonSi"
+                android:id="@+id/btnSi"
                 android:layout_width="wrap_content"
                 android:text="@string/botonSi"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"/>
 
             <Button
-                android:id="@+id/txtBotonNo"
+                android:id="@+id/btnNo"
                 android:layout_width="wrap_content"
                 android:text="@string/botonNo"
                 android:layout_weight="1"
@@ -60,17 +60,17 @@
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:layout_margin="16dp"
-            android:id="@+id/txtSegundaPregunta"
             android:layout_weight="2"
             android:layout_height="wrap_content">
 
             <TextView
                 android:layout_width="match_parent"
+                android:id="@+id/txtSegundaPregunta"
                 android:layout_height="wrap_content"
+                android:text="@string/pregunta3"
                 android:textColor="@android:color/black"
-                android:textStyle="bold"
                 android:textSize="20sp"
-                android:text="@string/pregunta3"/>
+                android:textStyle="bold" />
 
 
         </LinearLayout>

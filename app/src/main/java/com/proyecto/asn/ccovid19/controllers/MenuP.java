@@ -26,8 +26,6 @@ public class MenuP extends AppCompatActivity implements View.OnClickListener {
         btnNo = findViewById(R.id.btnNo);
         btnSi.setOnClickListener(this);
         btnNo.setOnClickListener(this);
-        txtRiesgo.setVisibility(View.INVISIBLE);
-        txtUrgencias.setVisibility(View.INVISIBLE);
 
     }
 
@@ -35,8 +33,9 @@ public class MenuP extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnSi:
-                txtRiesgo.setVisibility(View.VISIBLE);
-                txtUrgencias.setVisibility(View.VISIBLE);
+                Intent intent1 = new Intent(MenuP.this, Resultados.class);
+                startActivity(intent1);
+
                 break;
 
             case R.id.btnNo:
