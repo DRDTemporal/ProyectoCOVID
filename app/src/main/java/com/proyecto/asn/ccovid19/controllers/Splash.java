@@ -215,7 +215,7 @@ public class Splash extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            Intent intent = new Intent(Splash.this,MenuP.class);
+            Intent intent = new Intent(Splash.this,Preguntas.class);
             startActivity(intent);
             finish();
 

@@ -126,19 +126,19 @@ public class SoloExportar extends AppCompatActivity {
     //Método para exportar un archivo csv de las entregas
     private void exportarEnCSV() {
 
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat(getString(R.string.formato_fecha_exportar));
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat(getResources().getString(R.string.formato_fecha_exportar));
         String fecha = dateFormat.format(new Date());
 
         Iterator<Persona> it = allPersonas.iterator();
         List<Persona> tmpDatos = new ArrayList<>();
 
-        File exportDir = new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name));
+        File exportDir = new File(Environment.getExternalStorageDirectory(), getResources().getString(R.string.app_name));
         if (!exportDir.exists())
         {
             exportDir.mkdirs();
         }
 
-        File archivo = new File(exportDir, getString(R.string.app_name)+"-"+fecha+getString(R.string.tipo_archivo));
+        File archivo = new File(exportDir, getResources().getString(R.string.app_name)+"-"+fecha+getResources().getString(R.string.tipo_archivo));
         try {
             archivo.createNewFile();
         } catch (IOException e) {
@@ -175,7 +175,7 @@ public class SoloExportar extends AppCompatActivity {
             if (tmpDatos.size()<1){
                 Toast.makeText(SoloExportar.this, R.string.no_hay_datos_registrados, Toast.LENGTH_SHORT).show();
             }else {
-                String mensaje = getString(R.string.carpeta_ccovid_19) + " "+getString(R.string.app_name)+"-"+fecha+getString(R.string.tipo_archivo);
+                String mensaje = getResources().getString(R.string.carpeta_ccovid_19) + " "+getResources().getString(R.string.app_name)+"-"+fecha+getResources().getString(R.string.tipo_archivo);
                 Toast.makeText(SoloExportar.this, mensaje, Toast.LENGTH_SHORT).show();
 
             }

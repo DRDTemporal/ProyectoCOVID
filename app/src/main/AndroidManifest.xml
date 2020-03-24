@@ -15,10 +15,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".controllers.SoloExportar" />
         <activity android:name=".controllers.Resultados" />
-        <activity android:name=".controllers.CuartaPregunta" />
-        <activity android:name=".controllers.TerceraPregunta" />
-        <activity android:name=".controllers.SegundaPregunta" />
-        <activity android:name=".controllers.MenuP" />
+        <activity android:name=".controllers.Preguntas" />
         <activity android:name=".controllers.Registro" />
         <activity android:name=".controllers.Splash">
             <intent-filter>
