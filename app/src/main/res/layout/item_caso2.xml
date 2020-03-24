@@ -27,7 +27,7 @@
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:text="@string/caso5"/>
+                android:text="@string/caso2"/>
         </LinearLayout>
 
             <LinearLayout
@@ -60,15 +60,10 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/caso51">
+                android:src="@drawable/caso2">
             </ImageView>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/caso51">
 
-            </ImageView>
 
 
         </LinearLayout>
