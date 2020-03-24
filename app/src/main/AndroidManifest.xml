@@ -11,11 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".controllers.Resultados"></activity>
-        <activity android:name=".controllers.CuartaPregunta" />
-        <activity android:name=".controllers.TerceraPregunta" />
-        <activity android:name=".controllers.SegundaPregunta" />
-        <activity android:name=".controllers.MenuP" />
+        <activity android:name=".controllers.Preguntas"></activity>
+        <activity android:name=".controllers.Resultados" />
         <activity android:name=".controllers.Registro" />
         <activity android:name=".controllers.Splash">
             <intent-filter>
@@ -24,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controllers.MainActivity"></activity>
+        <activity android:name=".controllers.MainActivity" />
     </application>
 
 </manifest>

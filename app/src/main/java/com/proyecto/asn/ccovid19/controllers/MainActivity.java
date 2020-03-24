@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     // Método para ingresar a la pantalla de inicio.
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            Intent intent = new Intent(MainActivity.this,MenuP.class);
+            Intent intent = new Intent(MainActivity.this,Preguntas.class);
             startActivity(intent);
             finish();
 
