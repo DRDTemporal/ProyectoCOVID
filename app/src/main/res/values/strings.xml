@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CCovid19</string>
+    <string name="app_name">RutaCovid-Cauca</string>
     <string name="iniciar_sesion">Iniciar sesión</string>
     <string name="crear_cuenta">Crear cuenta</string>
     <string name="ingrese_correo_electronico">Ingrese su correo electrónico</string>

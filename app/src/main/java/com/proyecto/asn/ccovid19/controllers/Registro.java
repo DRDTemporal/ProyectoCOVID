@@ -48,7 +48,6 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
     private ProgressBar pbRegistrar;
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
-
     private List<Lugar> lugares = new ArrayList<>();
     private List<String> departamentos = new ArrayList<>(), municipios = new ArrayList<>();
     boolean activadoDepartamento = false , activadoMunicipio = false , activadoTipoID = false ;
