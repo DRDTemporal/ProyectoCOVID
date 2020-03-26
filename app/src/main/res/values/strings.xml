@@ -85,6 +85,7 @@
     <string name="caso1">"Asintomático sin nexo epidemiológico sin factores de Riesgo  \n\n  Distanciamiento social  y Medidas preventivas  "</string>
     <string name="mensaje_confirmacion">¿Está seguro de que sus sitomas son esos?</string>
     <string name="alerta_titulo">Alerta</string>
+    <string name="inicioSesion">Inicio de sesion</string>
 
 
 </resources>
