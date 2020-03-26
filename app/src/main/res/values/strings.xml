@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CCovid19</string>
+    <string name="app_name">RutaCovid-Cauca</string>
     <string name="iniciar_sesion">Iniciar sesión</string>
     <string name="crear_cuenta">Crear cuenta</string>
     <string name="ingrese_correo_electronico">Ingrese su correo electrónico</string>
@@ -85,6 +85,7 @@
     <string name="caso1">"Asintomático sin nexo epidemiológico sin factores de Riesgo  \n\n  Distanciamiento social  y Medidas preventivas  "</string>
     <string name="mensaje_confirmacion">¿Está seguro de que sus sitomas son esos?</string>
     <string name="alerta_titulo">Alerta</string>
+    <string name="inicioSesion">Inicio de sesion</string>
 
 
 </resources>
