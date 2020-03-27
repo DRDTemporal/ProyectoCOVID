@@ -114,8 +114,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:importantForAutofill="no"
-                android:textColor="@android:color/black"
-                android:textColorHint="@android:color/black" />
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white" />
 
             <EditText
                 android:id="@+id/identificacion"
@@ -134,8 +134,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:importantForAutofill="no"
-                android:textColor="@android:color/black"
-                android:textColorHint="@android:color/black" />
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white" />
 
             <Spinner
                 android:id="@+id/spMunicipio"
@@ -143,8 +143,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:importantForAutofill="no"
-                android:textColor="@android:color/black"
-                android:textColorHint="@android:color/black" />
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white" />
 
             <EditText
                 android:id="@+id/txtDireccion"
@@ -179,7 +179,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:layout_weight="1"
-                    android:background="@android:color/white"
+                    android:background="@drawable/boton2"
                     android:text="@string/cancelar" />
 
                 <Button
@@ -188,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:layout_weight="1"
-                    android:background="@android:color/white"
+                   android:background="@drawable/boton2"
                     android:text="@string/registrar" />
 
 

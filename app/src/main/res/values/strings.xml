@@ -79,10 +79,10 @@
     <string name="recomendacion">Recomendación:</string>
     <string name="caso5">"Sintomático leve  con Nexo epidemiológico \n\n Manejo de los síntomas  según indicación telefónica "</string>
     <string name="caso51">"Paciente con infección respiratoria aguda, baja probabilidad de COVID 19  \n\n  Manejo de síntomas en casa  con hidratación , lavado de manos, tapabocas y SIGNOS DE ALARMA "</string>
-    <string name="caso4">"Asintomático con nexo epidemiológico  \n\n Aislamiento en casa(por 14 días )  \n\n  Recomendaciones para el caso y la familia   "</string>
+    <string name="caso4">"Asintomático con nexo epidemiológico  \n\nAislamiento en casa(por 14 días )  \n\nRecomendaciones para el caso y la familia   "</string>
     <string name="caso3">"Asintomático sin nexo epidemiológico con factores de Riesgo  "</string>
     <string name="caso2">"Asintomático sin nexo epidemiológico con factores de Riesgo  \n\n Aislamiento intensificado  "</string>
-    <string name="caso1">"Asintomático sin nexo epidemiológico sin factores de Riesgo  \n\n  Distanciamiento social  y Medidas preventivas  "</string>
+    <string name="caso1">"Asintomático sin nexo epidemiológico sin factores de Riesgo  \n\nDistanciamiento social  y Medidas preventivas  "</string>
     <string name="mensaje_confirmacion">¿Está seguro de que sus sitomas son esos?</string>
     <string name="alerta_titulo">Alerta</string>
     <string name="inicioSesion">Inicio de sesion</string>

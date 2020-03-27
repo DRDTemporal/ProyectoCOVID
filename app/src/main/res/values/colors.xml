@@ -12,9 +12,11 @@
     <color name="azulL">#556FF4</color>
     <color name="negro">#000</color>
     <color name="blanco">#fff</color>
+    <color name="blanco2">#DDFFFFFF</color>
     <color name="azul">#1383D6</color>
     <color name="verde">#74B748</color>
-    <color name="naranja">#FF9100</color>
+    <color name="amarillo">#BCA11C</color>
+    <color name="naranja">#FF6600</color>
     <color name="transparente">#16FFFFFF</color>
 
     </resources>

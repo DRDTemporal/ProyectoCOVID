@@ -8,19 +8,6 @@
     android:orientation="vertical"
     tools:context=".controllers.Preguntas">
 
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnAExportar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/googleg_standard_color_18" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -57,6 +44,8 @@
                     android:id="@+id/btnSi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/boton2"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:text="@string/botonSi" />
 
@@ -65,6 +54,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+
+                    android:background="@drawable/boton2"
                     android:text="@string/botonNo" />
 
 
@@ -102,12 +93,15 @@
                         android:id="@+id/btnSi2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/boton2"
+                        android:layout_marginRight="20dp"
                         android:layout_weight="1"
                         android:text="@string/botonSi" />
 
                     <Button
                         android:id="@+id/btnNo2"
                         android:layout_width="wrap_content"
+                        android:background="@drawable/boton2"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/botonNo" />
@@ -151,6 +145,8 @@
                         android:id="@+id/btnSi21"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/boton2"
+                        android:layout_marginRight="20dp"
                         android:layout_weight="1"
                         android:text="@string/botonSi" />
 
@@ -159,14 +155,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:background="@drawable/boton2"
                         android:text="@string/botonNo" />
 
-
                 </LinearLayout>
-
-
             </LinearLayout>
-
 
             <LinearLayout
                 android:id="@+id/terceraPregunta"
@@ -200,6 +193,8 @@
                         android:id="@+id/btnSi3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/boton2"
+                        android:layout_marginRight="20dp"
                         android:layout_weight="1"
                         android:text="@string/botonSi" />
 
@@ -207,6 +202,7 @@
                         android:id="@+id/btnNo3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/boton2"
                         android:layout_weight="1"
                         android:text="@string/botonNo" />
 
@@ -246,6 +242,8 @@
                         android:id="@+id/btnSi4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/boton2"
+                        android:layout_marginRight="20dp"
                         android:layout_weight="1"
                         android:text="@string/botonSi" />
 
@@ -253,6 +251,7 @@
                         android:id="@+id/btnNo4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/boton2"
                         android:layout_weight="1"
                         android:text="@string/botonNo" />
 
