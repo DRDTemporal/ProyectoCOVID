@@ -50,7 +50,7 @@ public class Splash extends AppCompatActivity {
 
     private void inizialite(){
         imageView = findViewById(R.id.imageView);
-        imageView.setVisibility(View.INVISIBLE);
+        imageView.setVisibility(View.VISIBLE);
         bandera= true;
         valor=0;
     }

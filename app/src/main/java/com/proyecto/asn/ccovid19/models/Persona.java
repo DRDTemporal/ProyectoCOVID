@@ -1,13 +1,13 @@
 package com.proyecto.asn.ccovid19.models;
 
 public class Persona {
-    private String nombres = "", apellidos = "", tipoID = "", id = "", telefono = "", departamento = "", municipio = "", edad = "", email = "", direccion = "";
+    private String nombres = "", apellidos = "", tipoID = "", id = "", telefono = "", departamento = "", municipio = "", edad = "", email = "", direccion = "", fachaDatos = "";
     private int caso = 0;
 
     public Persona() {
     }
 
-    public Persona(String nombres, String apellidos, String tipoID, String id, String telefono, String departamento, String municipio, String edad, String email, String direccion, int caso) {
+    public Persona(String nombres, String apellidos, String tipoID, String id, String telefono, String departamento, String municipio, String edad, String email, String direccion, String fachaDatos, int caso) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.tipoID = tipoID;
@@ -18,6 +18,7 @@ public class Persona {
         this.edad = edad;
         this.email = email;
         this.direccion = direccion;
+        this.fachaDatos = fachaDatos;
         this.caso = caso;
     }
 
@@ -108,4 +109,13 @@ public class Persona {
     public void setCaso(int caso) {
         this.caso = caso;
     }
+
+    public String getFachaDatos() {
+        return fachaDatos;
+    }
+
+    public void setFachaDatos(String fachaDatos) {
+        this.fachaDatos = fachaDatos;
+    }
+
 }

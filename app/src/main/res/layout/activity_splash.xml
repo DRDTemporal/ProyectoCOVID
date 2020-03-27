@@ -9,16 +9,25 @@
 
     <ImageView
         android:id="@+id/imageView"
+<<<<<<< HEAD
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+=======
+        android:layout_width="251dp"
+        android:layout_height="238dp"
+>>>>>>> appR
         android:contentDescription="TODO"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+<<<<<<< HEAD
         app:layout_constraintVertical_bias="0.962"
         app:srcCompat="@drawable/logo_covid" />
+=======
+        app:srcCompat="@drawable/logoplay" />
+>>>>>>> appR
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

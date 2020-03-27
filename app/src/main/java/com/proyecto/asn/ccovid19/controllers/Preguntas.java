@@ -38,7 +38,6 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_preguntas);
         inicializar();
         inicializarFirebase();
-        administrador();
 
     }
 
@@ -122,29 +121,14 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
     }
 
     private void guardarCaso() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> appR
         mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("caso").setValue(caso);
 
     }
 
-    private void administrador(){
-        mDatabase.child("persona").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Toast.makeText(Preguntas.this, "SI", Toast.LENGTH_SHORT).show();
-                findViewById(R.id.btnAExportar).setVisibility(View.VISIBLE);
-                findViewById(R.id.btnAExportar).setOnClickListener(v -> {
-                    startActivity(new Intent(Preguntas.this, SoloExportar.class));
-                });
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }
 
     @Override
     public void onClick(View view) {
