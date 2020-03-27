@@ -123,7 +123,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
 
     private void guardarCaso() {
 
-        mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).setValue(caso);
+        mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("caso").setValue(caso);
 
     }
 
