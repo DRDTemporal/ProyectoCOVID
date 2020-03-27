@@ -2,6 +2,11 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
+
+    <color name="colorBlue">#1383D6</color>
+    <color name="colorBlueDark">#1171B8</color>
+    <color name="colorGreen">#0E6EB5</color>
+
     <color name="colorAccent">#1383D6</color>
     <color name="gris">#B6B6B6</color>
     <color name="azulL">#556FF4</color>
@@ -11,4 +16,5 @@
     <color name="verde">#74B748</color>
     <color name="naranja">#FF9100</color>
     <color name="transparente">#16FFFFFF</color>
-</resources>
+
+    </resources>
