@@ -3,10 +3,24 @@ package com.proyecto.asn.ccovid19.controllers;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -20,17 +34,28 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.proyecto.asn.ccovid19.R;
+import com.proyecto.asn.ccovid19.models.HoraFecha;
+import com.proyecto.asn.ccovid19.models.Lugar;
+import com.proyecto.asn.ccovid19.utilities.CityService;
+import com.proyecto.asn.ccovid19.utilities.WorldTimeService;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static android.location.LocationManager.NETWORK_PROVIDER;
+import static com.proyecto.asn.ccovid19.utilities.Constants.LINK_API;
+
 public class Preguntas extends AppCompatActivity implements View.OnClickListener {
+    private static final int MY_LOCATION = 500;
     LinearLayout primeraPregunta, SegundaPregunta,segundaPregunta2, TerceraPregunta, CuartaPregunta;
     Button btnSi, btnNo,btnSi2, btnNo2,btnSi21, btnNo21,btnSi3, btnNo3, btnSi4, btnNo4;
     DatabaseReference mDatabase;
     FirebaseAuth mAuth;
     public static int caso =0;
+    Location location;
+    String horaFecheServidor="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +130,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
 
         builder.setPositiveButton(R.string.aceptar, (dialog, id) -> {
             startActivity(new Intent(Preguntas.this, Resultados.class));
-            guardarCaso();
+            obtenerHoraFechaServidor();
             finish();
         });
         builder.setNegativeButton(R.string.cancelar, (dialog, id) -> {
@@ -120,11 +145,84 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
 
     }
 
-    private void guardarCaso() {
-        mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("caso").setValue(caso);
+    private void obtenerHoraFechaServidor() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(LINK_API)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
+        WorldTimeService worldTimeService = retrofit.create(WorldTimeService.class);
+        Call<HoraFecha> callWoldTime = worldTimeService.getWorldTime();
+        callWoldTime.enqueue(new Callback<HoraFecha>() {
+            @Override
+            public void onResponse(Call<HoraFecha> call, Response<HoraFecha> response) {
+                if(!response.isSuccessful()) {
+                    Toast.makeText(Preguntas.this, R.string.error_servidor_hora, Toast.LENGTH_LONG).show();
+                }else {
+                    if (response.body() != null) {
+
+                        horaFecheServidor = response.body().getDateTime();
+                    } else {
+                        Toast.makeText(Preguntas.this, R.string.error_servidor_hora, Toast.LENGTH_LONG).show();
+                        obtenerUbicacion();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HoraFecha> call, Throwable t) {
+                Toast.makeText(Preguntas.this, R.string.error_servidor_hora, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
+
+    private void obtenerUbicacion() {
+        LocationManager locationManager;
+
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) ActivityCompat.requestPermissions
+                (this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, MY_LOCATION);
+        {
+
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
+                    (this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                return;
+
+            }
+
+
+            try {
+                locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                Criteria criteria = new Criteria();
+
+                assert locationManager != null;
+                location = locationManager.getLastKnownLocation(Objects.requireNonNull(locationManager.getBestProvider(criteria, false)));
+                guardarDatos();
+
+            } catch (Exception ex) {
+                Toast.makeText(this, R.string.error_ubicacion, Toast.LENGTH_SHORT).show();
+            }
+
+
+
+
+
+        }
+    }
+
+
+
+    private void guardarDatos() {
+        mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("caso").setValue(caso);
+        mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("latitud").setValue(String.valueOf(location.getLatitude()));
+        mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("logitud").setValue(String.valueOf(location.getLongitude()));
+        mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("fechaActua").setValue(horaFecheServidor);
+
+    }
 
     @Override
     public void onClick(View view) {

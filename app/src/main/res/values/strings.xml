@@ -86,6 +86,8 @@
     <string name="mensaje_confirmacion">¿Está seguro de que sus sitomas son esos?</string>
     <string name="alerta_titulo">Alerta</string>
     <string name="inicioSesion">Inicio de sesion</string>
+    <string name="error_ubicacion">No se ha podido obtener la ubicación. Por favor actiive el GPS.</string>
+    <string name="error_servidor_hora">Error al obtener la hora del servidor. Por favor revise su conexión.</string>
 
 
 </resources>

@@ -1,26 +1,16 @@
 package com.proyecto.asn.ccovid19.models;
 
 public class Persona {
-    private String nombres = "", apellidos = "", tipoID = "", id = "", telefono = "", departamento = "", municipio = "", edad = "", email = "", direccion = "", fachaDatos = "";
+    private String nombres = "", apellidos = "", tipoID = "", id = "", telefono = "",
+            departamento = "", municipio = "", edad = "", email = "", direccion = "",
+            fechaDatos = "", latitud= "", longitud="" ;
+
     private int caso = 0;
 
     public Persona() {
     }
 
-    public Persona(String nombres, String apellidos, String tipoID, String id, String telefono, String departamento, String municipio, String edad, String email, String direccion, String fachaDatos, int caso) {
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.tipoID = tipoID;
-        this.id = id;
-        this.telefono = telefono;
-        this.departamento = departamento;
-        this.municipio = municipio;
-        this.edad = edad;
-        this.email = email;
-        this.direccion = direccion;
-        this.fachaDatos = fachaDatos;
-        this.caso = caso;
-    }
+
 
     public String getNombres() {
         return nombres;
@@ -110,12 +100,27 @@ public class Persona {
         this.caso = caso;
     }
 
-    public String getFachaDatos() {
-        return fachaDatos;
+    public String getFechaDatos() {
+        return fechaDatos;
     }
 
-    public void setFachaDatos(String fachaDatos) {
-        this.fachaDatos = fachaDatos;
+    public void setFechaDatos(String fechaDatos) {
+        this.fechaDatos = fechaDatos;
     }
 
+    public String getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
+    }
+
+    public String getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(String longitud) {
+        this.longitud = longitud;
+    }
 }
