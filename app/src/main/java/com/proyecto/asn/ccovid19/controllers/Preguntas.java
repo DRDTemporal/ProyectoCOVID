@@ -274,7 +274,6 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CHECK_SETTINGS) {
-            pbPreguntas.setVisibility(View.INVISIBLE);
             switch (resultCode) {
                 case Activity.RESULT_OK:
                 {
