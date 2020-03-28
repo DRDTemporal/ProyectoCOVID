@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -14,6 +16,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +53,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
     Location location;
     String horaFechaServidor="";
     int nPregunta =1;
+    ProgressBar pbPreguntas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +71,10 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
         txtPregunta = findViewById(R.id.txtpregunta);
         btnSi = findViewById(R.id.btnSi);
         btnNo = findViewById(R.id.btnNo);
-
+        pbPreguntas =findViewById(R.id.pbPreguntas);
+        pbPreguntas.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
         btnSi.setOnClickListener(this);
         btnNo.setOnClickListener(this);
-
-
 
     }
 
@@ -81,6 +84,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
     }
 
     private  void pasarAResultado(){
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setMessage(R.string.mensaje_confirmacion)
@@ -90,6 +94,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
             obtenerUbicacion();
         });
         builder.setNegativeButton(R.string.cancelar, (dialog, id) -> {
+            reiniciarEncuesta();
         });
         builder.setCancelable(true);
         builder.create();
@@ -98,7 +103,24 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
 
     }
 
+    private void reiniciarEncuesta(){
+        caso=0;
+        nPregunta = 1;
+        txtPregunta.setText(R.string.pregunta3);
+    }
+
+    private void hideProgressBar(){
+        pbPreguntas.setVisibility(View.INVISIBLE);
+
+    }
+
+    private void showProgressBar(){
+        pbPreguntas.setVisibility(View.VISIBLE);
+
+    }
+
     private void obtenerUbicacion() {
+        showProgressBar();
         LocationManager locationManager;
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
@@ -133,6 +155,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
                 obtenerHoraDispositivo();
 
             } catch (Exception ex) {
+                hideProgressBar();
                 Toast.makeText(this, R.string.error_ubicacion, Toast.LENGTH_SHORT).show();
             }
 
@@ -148,6 +171,8 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
             horaFechaServidor = format1.format(date);
             guardarDatos();
         } catch (Exception e1) {
+            hideProgressBar();
+            reiniciarEncuesta();
             Toast.makeText(this, R.string.reintente_encuesta, Toast.LENGTH_SHORT).show();
 
 
@@ -189,6 +214,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
             startActivity(new Intent(Preguntas.this, Resultados.class));
             finish();
         }catch (Exception ignored){
+            hideProgressBar();
             LocationRequest locationRequest = LocationRequest.create();
             locationRequest.setInterval(10000);
             locationRequest.setFastestInterval(5000);
@@ -211,6 +237,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
                         resolvable.startResolutionForResult(Preguntas.this,
                                 REQUEST_CHECK_SETTINGS);
                     } catch (IntentSender.SendIntentException ignored1) {
+                        hideProgressBar();
                     }
                 }
             });
@@ -222,9 +249,9 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == MY_LOCATION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
                 obtenerUbicacion();
             }else{
+                hideProgressBar();
                 Toast.makeText(this, R.string.permiso_gps, Toast.LENGTH_SHORT).show();
             }
         }
@@ -235,6 +262,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CHECK_SETTINGS) {
+            pbPreguntas.setVisibility(View.INVISIBLE);
             switch (resultCode) {
                 case Activity.RESULT_OK:
                 {
@@ -243,6 +271,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
                 }
                 case Activity.RESULT_CANCELED:
                 {
+                    hideProgressBar();
                     Toast.makeText(this, R.string.activar_gps, Toast.LENGTH_SHORT).show();
                     break;
                 }

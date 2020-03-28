@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.app.Person;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -23,7 +24,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.proyecto.asn.ccovid19.R;
+import com.proyecto.asn.ccovid19.models.Persona;
+
+import java.util.Objects;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
@@ -36,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     private FirebaseAuth mAuth;
     private EditText txtEmail, txtContrasena;
     private TextView txtOlvidoLaContrasena;
+    private DatabaseReference mDatabase;
+    Persona persona;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     //Método para inicializar la autentificación de Firebase
     private void inizialiteFirebase() {
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     //Método para darles acciones a los botones
@@ -141,9 +153,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     // Método para ingresar a la pantalla de inicio.
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            Intent intent = new Intent(MainActivity.this,Preguntas.class);
-            startActivity(intent);
-            finish();
+            personaIdentificada();
+
 
         } else {
             Toast.makeText(this, "El usuario no está registrado", Toast.LENGTH_SHORT).show();
@@ -189,12 +200,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             }
         });
 
-        btnLogin.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.cancel();
-            }
-        });
+        btnLogin.setOnClickListener(v -> dialog.cancel());
         dialog.setCancelable(true);
         dialog.show();
 
@@ -240,6 +246,41 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         builder.create();
         builder.show();
 
+
+    }
+
+    private void personaIdentificada(){
+        final FirebaseUser currentUser = mAuth.getCurrentUser();
+        DatabaseReference personas = mDatabase.child("persona");
+        personas.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot child: dataSnapshot.getChildren()){
+                    persona =child.getValue(Persona.class);
+                    assert persona != null;
+                    assert currentUser != null;
+                    if (Objects.equals(child.getKey(), mAuth.getUid())){
+                        if (persona.getCaso() != 0 ){
+                            Preguntas.caso = persona.getCaso();
+                            startActivity(new Intent(MainActivity.this,Resultados.class));
+                            finish();
+                        }else{
+                            startActivity(new Intent(MainActivity.this,Preguntas.class));
+                            finish();
+                        }
+                        break;
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 

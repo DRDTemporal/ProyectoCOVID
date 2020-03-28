@@ -92,5 +92,10 @@
     <string name="reintente_encuesta">Por favor reintente hacer la encuesta.</string>
     <string name="desarrollado">Esta aplicación fue desarrollada por: \n*David Alejandro Popayán \n*Rodrigo Alejandro Guspian</string>
     <string name="permiso_gps">Por favor active el permiso de GPS</string>
+    <string name="volver_encuesta">Volver a hacer la encuesta</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
+    <string name="acerca_de">Acerca de</string>
+    <string name="informaci_n">Información</string>
+    <string name="creditos">Creditos</string>
 
 </resources>

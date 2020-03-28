@@ -1,5 +1,6 @@
 package com.proyecto.asn.ccovid19.controllers;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import io.paperdb.Paper;
 import retrofit2.Call;
@@ -22,8 +23,14 @@ import android.widget.Toast;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.proyecto.asn.ccovid19.R;
 import com.proyecto.asn.ccovid19.models.Lugar;
+import com.proyecto.asn.ccovid19.models.Persona;
 import com.proyecto.asn.ccovid19.utilities.CityService;
 
 import java.util.List;
@@ -39,6 +46,8 @@ public class Splash extends AppCompatActivity {
     private int valor = 0;
     ImageView imageView;
     private FirebaseAuth mAuth;
+    Persona persona;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +70,7 @@ public class Splash extends AppCompatActivity {
     private void inizialiteFirebase() {
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     private void leerLugares() {
@@ -116,27 +126,21 @@ public class Splash extends AppCompatActivity {
     }
 
     private void iniciarSplash(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (bandera){
-                    try {
-                        Thread.sleep(200);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            valor++;
-                            if (valor==2){
-                                animationSplash();
-                                bandera=false;
-                            }
-
-                        }
-                    });
+        new Thread(() -> {
+            while (bandera){
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+                runOnUiThread(() -> {
+                    valor++;
+                    if (valor==2){
+                        animationSplash();
+                        bandera=false;
+                    }
+
+                });
             }
         }).start();
 
@@ -215,15 +219,47 @@ public class Splash extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            Intent intent = new Intent(Splash.this,Preguntas.class);
-            startActivity(intent);
-            finish();
+            personaIdentificada();
 
         } else {
-            Intent intent = new Intent(Splash.this,MainActivity.class);
-            startActivity(intent);
+            startActivity( new Intent(Splash.this,MainActivity.class));
             finish();
         }
+    }
+
+    private void personaIdentificada(){
+        final FirebaseUser currentUser = mAuth.getCurrentUser();
+        DatabaseReference personas = mDatabase.child("persona");
+        personas.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot child: dataSnapshot.getChildren()){
+                    persona =child.getValue(Persona.class);
+                    assert persona != null;
+                    assert currentUser != null;
+                    if (Objects.equals(child.getKey(), mAuth.getUid())){
+                        if (persona.getCaso() != 0 ){
+                            Preguntas.caso = persona.getCaso();
+                            startActivity(new Intent(Splash.this,Resultados.class));
+                            finish();
+                        }else{
+                            startActivity( new Intent(Splash.this,Preguntas.class));
+                            finish();
+                        }
+                        break;
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
 }
