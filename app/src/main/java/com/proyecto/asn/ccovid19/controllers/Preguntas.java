@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -41,14 +42,14 @@ import androidx.core.app.ActivityCompat;
 public class Preguntas extends AppCompatActivity implements View.OnClickListener {
     private static final int MY_LOCATION = 0;
     protected static final int REQUEST_CHECK_SETTINGS = 0x1;
-
-    LinearLayout primeraPregunta, SegundaPregunta,segundaPregunta2, TerceraPregunta, CuartaPregunta;
-    Button btnSi, btnNo,btnSi2, btnNo2,btnSi21, btnNo21,btnSi3, btnNo3, btnSi4, btnNo4;
+    TextView txtPregunta;
+    Button btnSi, btnNo;
     DatabaseReference mDatabase;
     FirebaseAuth mAuth;
     public static int caso =0;
     Location location;
     String horaFechaServidor="";
+    int nPregunta =1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,54 +64,15 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
     }
 
     private void inicializar() {
-        primeraPregunta = findViewById(R.id.PrimeraPregunta);
-        SegundaPregunta = findViewById(R.id.SegundaPregunta);
-        segundaPregunta2 = findViewById(R.id.SegundaPregunta2);
-        TerceraPregunta = findViewById(R.id.terceraPregunta);
-        CuartaPregunta = findViewById(R.id.cuartaPregunta);
+        txtPregunta = findViewById(R.id.txtpregunta);
         btnSi = findViewById(R.id.btnSi);
         btnNo = findViewById(R.id.btnNo);
-        btnSi2 = findViewById(R.id.btnSi2);
-        btnNo2 = findViewById(R.id.btnNo2);
-        btnSi21 = findViewById(R.id.btnSi21);
-        btnNo21 = findViewById(R.id.btnNo21);
-        btnSi3 = findViewById(R.id.btnSi3);
-        btnNo3 = findViewById(R.id.btnNo3);
-        btnSi4 = findViewById(R.id.btnSi4);
-        btnNo4 = findViewById(R.id.btnNo4);
+
         btnSi.setOnClickListener(this);
         btnNo.setOnClickListener(this);
-        btnSi2.setOnClickListener(this);
-        btnNo2.setOnClickListener(this);
-        btnSi21.setOnClickListener(this);
-        btnNo21.setOnClickListener(this);
-        btnSi3.setOnClickListener(this);
-        btnNo3.setOnClickListener(this);
-        btnSi4.setOnClickListener(this);
-        btnNo4.setOnClickListener(this);
 
 
-        //OCULTAR PREGUNTAS
-        SegundaPregunta.setVisibility(View.INVISIBLE);
-        segundaPregunta2.setVisibility(View.INVISIBLE);
-        TerceraPregunta.setVisibility(View.INVISIBLE);
-        CuartaPregunta.setVisibility(View.INVISIBLE);
-        btnSi2.setVisibility(View.INVISIBLE);
-        btnNo2.setVisibility(View.INVISIBLE);
-        btnSi21.setVisibility(View.INVISIBLE);
-        btnNo21.setVisibility(View.INVISIBLE);
-        btnSi3.setVisibility(View.INVISIBLE);
-        btnNo3.setVisibility(View.INVISIBLE);
-        btnSi4.setVisibility(View.INVISIBLE);
-        btnNo4.setVisibility(View.INVISIBLE);
-        btnSi2.setEnabled(false);
-        btnNo2.setEnabled(false);
-        btnSi21.setEnabled(false);
-        btnNo21.setEnabled(false);
-        btnSi3.setEnabled(false);
-        btnNo3.setEnabled(false);
-        btnSi4.setEnabled(false);
-        btnNo4.setEnabled(false);
+
     }
 
     private  void  inicializarFirebase(){
@@ -194,7 +156,6 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
     }
 
     /*private void obtenerHoraFechaServidor() {
-
         String urlLugares =LINK_API_WORLD_TIME+LINK_HORA_COLOMBIANA;
         URL url;
         HttpURLConnection connection;
@@ -206,7 +167,6 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuffer response = new StringBuffer();
             String inputLine="";
-
             while ((inputLine=reader.readLine())!=null){
                 response.append(inputLine);
             }
@@ -214,7 +174,6 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
             HoraFecha horaFecha = new Gson().fromJson(json, HoraFecha.class);;
             horaFechaServidor = horaFecha.getDatetime();
             guardarDatos();
-
         }catch (Exception e){
             Log.e("Error en consumo",e.getMessage());
             Toast.makeText(this, "No tienes acceso a internet, por favor conectese a una", Toast.LENGTH_SHORT).show();
@@ -297,80 +256,71 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
-
         switch (view.getId()){
 
             case R.id.btnSi:
-                caso = 6;
-                pasarAResultado();
+                switch (nPregunta){
+                    case 1:
+                        caso = 6;
+                        pasarAResultado();
+                        break;
+
+                    case 2:
+                        nPregunta= 3;
+                        txtPregunta.setText(R.string.pregunta3);
+                        break;
+
+                    case 3:
+                        caso = 5;
+                        pasarAResultado();
+                        break;
+
+                    case 4:
+                        caso = 3;
+                        pasarAResultado();
+                        break;
+
+                    case 5:
+                        caso = 2;
+                        pasarAResultado();
+                        break;
+                }
                 break;
 
             case R.id.btnNo:
-                SegundaPregunta.setVisibility(View.VISIBLE);
-                btnSi2.setVisibility(View.VISIBLE);
-                btnNo2.setVisibility(View.VISIBLE);
-                btnSi2.setEnabled(true);
-                btnNo2.setEnabled(true);
+                switch (nPregunta){
+                    case 1:
+                        nPregunta = 2;
+                        txtPregunta.setText(R.string.pregunta2);
+                        break;
 
-                break;
+                    case 2:
+                        nPregunta = 4;
+                        txtPregunta.setText(R.string.pregunta3);
+                        break;
 
-            case R.id.btnSi2:
+                    case 3:
+                        caso = 4;
+                        pasarAResultado();
+                        break;
 
-                segundaPregunta2.setVisibility(View.VISIBLE);
-                btnSi21.setVisibility(View.VISIBLE);
-                btnNo21.setVisibility(View.VISIBLE);
-                btnSi21.setEnabled(true);
-                btnNo21.setEnabled(true);
-                break;
+                    case 4:
+                        nPregunta = 5;
+                        txtPregunta.setText(R.string.tienefactoresde);
+                        break;
 
+                    case  5:
+                        caso = 1;
+                        pasarAResultado();
+                        break;
 
-            case R.id.btnNo2:
-                TerceraPregunta.setVisibility(View.VISIBLE);
-                btnSi3.setVisibility(View.VISIBLE);
-                btnNo3.setVisibility(View.VISIBLE);
-                btnSi3.setEnabled(true);
-                btnNo3.setEnabled(true);
-                break;
+                }
 
-            case R.id.btnSi21:
-                caso = 5;
-                pasarAResultado();
-                break;
-
-
-            case R.id.btnNo21:
-                caso = 4;
-                pasarAResultado();
-                break;
-
-
-            case R.id.btnSi3:
-                caso = 3;
-                pasarAResultado();
-                break;
-
-            case R.id.btnNo3:
-                CuartaPregunta.setVisibility(View.VISIBLE);
-                btnSi4.setVisibility(View.VISIBLE);
-                btnNo4.setVisibility(View.VISIBLE);
-                btnSi4.setEnabled(true);
-                btnNo4.setEnabled(true);
-                break;
-
-            case R.id.btnSi4:
-                caso = 2;
-                pasarAResultado();
-                break;
-
-            case R.id.btnNo4:
-                caso = 1;
-                pasarAResultado();
                 break;
 
 
         }
 
     }
-
 
 }

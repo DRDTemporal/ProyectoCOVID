@@ -2,264 +2,68 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/fondo"
     android:orientation="vertical"
     tools:context=".controllers.Preguntas">
 
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/PrimeraPregunta"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/PrimeraPregunta"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginTop="0dp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/txtpregunta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:orientation="vertical">
+                android:text="@string/preguntaPrincipal"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/preguntaPrincipal"
-                    android:textColor="@android:color/background_light"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btnSi"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:layout_weight="2"
-                android:orientation="horizontal">
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/boton2"
+                android:text="@string/botonSi" />
 
-                <Button
-                    android:id="@+id/btnSi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/boton2"
-                    android:layout_marginRight="20dp"
-                    android:layout_weight="1"
-                    android:text="@string/botonSi" />
-
-                <Button
-                    android:id="@+id/btnNo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-
-                    android:background="@drawable/boton2"
-                    android:text="@string/botonNo" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/SegundaPregunta"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btnNo"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_weight="1"
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
+                android:background="@drawable/boton2"
+                android:text="@string/botonNo" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/pregunta2"
-                        android:textColor="@android:color/background_light"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:layout_weight="2"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btnSi2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/boton2"
-                        android:layout_marginRight="20dp"
-                        android:layout_weight="1"
-                        android:text="@string/botonSi" />
-
-                    <Button
-                        android:id="@+id/btnNo2"
-                        android:layout_width="wrap_content"
-                        android:background="@drawable/boton2"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/botonNo" />
-
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/SegundaPregunta2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/pregunta3"
-                        android:textColor="@android:color/background_light"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:layout_weight="2"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btnSi21"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/boton2"
-                        android:layout_marginRight="20dp"
-                        android:layout_weight="1"
-                        android:text="@string/botonSi" />
-
-                    <Button
-                        android:id="@+id/btnNo21"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/boton2"
-                        android:text="@string/botonNo" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/terceraPregunta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/pregunta3"
-                        android:textColor="@android:color/background_light"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:layout_weight="2"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btnSi3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/boton2"
-                        android:layout_marginRight="20dp"
-                        android:layout_weight="1"
-                        android:text="@string/botonSi" />
-
-                    <Button
-                        android:id="@+id/btnNo3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/boton2"
-                        android:layout_weight="1"
-                        android:text="@string/botonNo" />
-
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/cuartaPregunta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/tienefactoresde"
-                        android:textColor="@android:color/background_light"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:layout_weight="2"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btnSi4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/boton2"
-                        android:layout_marginRight="20dp"
-                        android:layout_weight="1"
-                        android:text="@string/botonSi" />
-
-                    <Button
-                        android:id="@+id/btnNo4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/boton2"
-                        android:layout_weight="1"
-                        android:text="@string/botonNo" />
-
-
-                </LinearLayout>
-
-            </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
+
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
