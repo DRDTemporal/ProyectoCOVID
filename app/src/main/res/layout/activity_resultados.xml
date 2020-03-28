@@ -22,6 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:textColor="@color/blanco"
+            android:background="@drawable/boton"
             android:layout_margin="8dp"
             android:text="@string/volver_encuesta" />
 
@@ -30,6 +32,8 @@
             android:id="@+id/btnCerrarSesion"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/boton"
+            android:textColor="@color/blanco"
             android:layout_weight="1"
             android:layout_margin="8dp"
             android:text="@string/cerrar_sesion" />
@@ -55,6 +59,8 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
         android:text="@string/informaci_n"
+        android:background="@drawable/boton"
+        android:textColor="@color/blanco"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
