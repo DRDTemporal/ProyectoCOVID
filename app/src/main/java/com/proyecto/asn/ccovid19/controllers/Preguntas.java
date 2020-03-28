@@ -41,7 +41,6 @@ import androidx.core.app.ActivityCompat;
 public class Preguntas extends AppCompatActivity implements View.OnClickListener {
     private static final int MY_LOCATION = 0;
     protected static final int REQUEST_CHECK_SETTINGS = 0x1;
-    private static final int LOCATION_REQUEST = 500;
 
     LinearLayout primeraPregunta, SegundaPregunta,segundaPregunta2, TerceraPregunta, CuartaPregunta;
     Button btnSi, btnNo,btnSi2, btnNo2,btnSi21, btnNo21,btnSi3, btnNo3, btnSi4, btnNo4;
@@ -262,14 +261,13 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case LOCATION_REQUEST:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (requestCode == MY_LOCATION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    obtenerUbicacion();
-                }
-
-                break;
+                obtenerUbicacion();
+            }else{
+                Toast.makeText(this, R.string.permiso_gps, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

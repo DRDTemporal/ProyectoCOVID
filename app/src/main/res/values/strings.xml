@@ -91,5 +91,6 @@
     <string name="activar_gps">Por favor active su GPS y vuelva a hacer la enquesta.</string>
     <string name="reintente_encuesta">Por favor reintente hacer la encuesta.</string>
     <string name="desarrollado">Esta aplicación fue desarrollada por: \n*David Alejandro Popayán \n*Rodrigo Alejandro Guspian</string>
+    <string name="permiso_gps">Por favor active el permiso de GPS</string>
 
 </resources>
