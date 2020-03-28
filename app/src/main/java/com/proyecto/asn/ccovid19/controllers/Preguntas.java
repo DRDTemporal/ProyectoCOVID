@@ -13,6 +13,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -54,6 +55,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
     String horaFechaServidor="";
     int nPregunta =1;
     ProgressBar pbPreguntas;
+    int solo1Vez =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +108,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
     private void reiniciarEncuesta(){
         caso=0;
         nPregunta = 1;
-        txtPregunta.setText(R.string.pregunta3);
+        txtPregunta.setText(R.string.preguntaPrincipal);
     }
 
     private void hideProgressBar(){
@@ -211,8 +213,14 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
             mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("latitud").setValue(String.valueOf(location.getLatitude()));
             mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("logitud").setValue(String.valueOf(location.getLongitude()));
             mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("fechaDatos").setValue(horaFechaServidor);
-            startActivity(new Intent(Preguntas.this, Resultados.class));
-            finish();
+            if(solo1Vez==0){
+                solo1Vez=1;
+                startActivity(new Intent(Preguntas.this, Resultados.class));
+                Log.e("Veces","A llegado");
+                finish();
+            }
+
+
         }catch (Exception ignored){
             hideProgressBar();
             LocationRequest locationRequest = LocationRequest.create();
@@ -226,7 +234,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
                     LocationServices.getSettingsClient(this).checkLocationSettings(builder.build());
 
             task.addOnSuccessListener(this, locationSettingsResponse -> {
-                obtenerUbicacion();
+                obtenerUbicacion();;
             });
 
             task.addOnFailureListener(this, e -> {

@@ -98,14 +98,14 @@ public class Resultados extends AppCompatActivity implements View.OnClickListene
     private void reiniciarEncuesta() {
         mDatabase  = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("caso").setValue(0);
-        startActivity(new Intent(Resultados.this,MainActivity.class));
+        startActivity(new Intent(Resultados.this,Preguntas.class));
         finish();
 
     }
 
     private void cerrarSesion() {
-        startActivity(new Intent(Resultados.this,MainActivity.class));
         FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(Resultados.this,MainActivity.class));
         finish();
     }
 
