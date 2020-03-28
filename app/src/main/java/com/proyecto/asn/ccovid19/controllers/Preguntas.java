@@ -113,12 +113,16 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
 
     private void hideProgressBar(){
         pbPreguntas.setVisibility(View.INVISIBLE);
+        btnSi.setEnabled(true);
+        btnNo.setEnabled(true);
+
 
     }
 
     private void showProgressBar(){
         pbPreguntas.setVisibility(View.VISIBLE);
-
+        btnSi.setEnabled(false);
+        btnNo.setEnabled(false);
     }
 
     private void obtenerUbicacion() {
