@@ -1,15 +1,16 @@
 package com.proyecto.asn.ccovid19.controllers;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -20,33 +21,27 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.proyecto.asn.ccovid19.R;
-import com.proyecto.asn.ccovid19.models.HoraFecha;
-import com.proyecto.asn.ccovid19.utilities.WorldTimeService;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-import static com.proyecto.asn.ccovid19.utilities.Constants.LINK_API_WORLD_TIME;
 
 public class Preguntas extends AppCompatActivity implements View.OnClickListener {
-    private static final int MY_LOCATION = 500;
+    private static final int MY_LOCATION = 0;
     protected static final int REQUEST_CHECK_SETTINGS = 0x1;
+    private static final int LOCATION_REQUEST = 500;
 
     LinearLayout primeraPregunta, SegundaPregunta,segundaPregunta2, TerceraPregunta, CuartaPregunta;
     Button btnSi, btnNo,btnSi2, btnNo2,btnSi21, btnNo21,btnSi3, btnNo3, btnSi4, btnNo4;
@@ -54,7 +49,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
     FirebaseAuth mAuth;
     public static int caso =0;
     Location location;
-    String horaFecheServidor="";
+    String horaFechaServidor="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +57,9 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_preguntas);
         inicializar();
         inicializarFirebase();
+        /*StrictMode.ThreadPolicy old = StrictMode.getThreadPolicy();
+        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder(old).permitNetwork().build());*/
+
 
     }
 
@@ -139,30 +137,39 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
 
     }
 
-
     private void obtenerUbicacion() {
         LocationManager locationManager;
 
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) ActivityCompat.requestPermissions
-                (this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, MY_LOCATION);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_LOCATION);
         {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                    != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
-                    (this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
+            if (ActivityCompat.checkSelfPermission(this,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION) !=
+                    PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(this,
+                            android.Manifest.permission.ACCESS_COARSE_LOCATION) !=
+                            PackageManager.PERMISSION_GRANTED) {
                 return;
-
             }
 
             try {
                 locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                Criteria criteria = new Criteria();
-
                 assert locationManager != null;
-                location = locationManager.getLastKnownLocation(Objects.requireNonNull(locationManager.getBestProvider(criteria, false)));
-                obtenerHoraFechaServidor();
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, new LocationListener() {
+                    @Override
+                    public void onLocationChanged(Location location) { }
+
+                    @Override
+                    public void onStatusChanged(String provider, int status, Bundle extras) { }
+
+                    @Override
+                    public void onProviderEnabled(String provider) { }
+
+                    @Override
+                    public void onProviderDisabled(String provider) { }
+                });
+                location = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+                obtenerHoraDispositivo();
 
             } catch (Exception ex) {
                 Toast.makeText(this, R.string.error_ubicacion, Toast.LENGTH_SHORT).show();
@@ -171,47 +178,56 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
         }
     }
 
-    private void obtenerHoraFechaServidor() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(LINK_API_WORLD_TIME)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+    private void obtenerHoraDispositivo() {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, 1);
+        Date date = cal.getTime();
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            horaFechaServidor = format1.format(date);
+            guardarDatos();
+        } catch (Exception e1) {
+            Toast.makeText(this, R.string.reintente_encuesta, Toast.LENGTH_SHORT).show();
 
-        WorldTimeService worldTimeService = retrofit.create(WorldTimeService.class);
-        Call<HoraFecha> callWoldTime = worldTimeService.getWorldTime();
-        callWoldTime.enqueue(new Callback<HoraFecha>() {
-            @Override
-            public void onResponse(Call<HoraFecha> call, Response<HoraFecha> response) {
-                if(!response.isSuccessful()) {
-                    Toast.makeText(Preguntas.this, R.string.error_servidor_hora, Toast.LENGTH_LONG).show();
-                }else {
-                    if (response.body() != null) {
-                        horaFecheServidor = response.body().getDatetime();
-                        guardarDatos();
-                    } else {
-                        Toast.makeText(Preguntas.this, R.string.error_servidor_hora, Toast.LENGTH_LONG).show();
 
-                    }
-                }
-            }
+        }
 
-            @Override
-            public void onFailure(Call<HoraFecha> call, Throwable t) {
-                Toast.makeText(Preguntas.this, R.string.error_servidor_hora, Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
+    /*private void obtenerHoraFechaServidor() {
 
+        String urlLugares =LINK_API_WORLD_TIME+LINK_HORA_COLOMBIANA;
+        URL url;
+        HttpURLConnection connection;
+        try {
+            url = new URL(urlLugares);
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.connect();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuffer response = new StringBuffer();
+            String inputLine="";
 
+            while ((inputLine=reader.readLine())!=null){
+                response.append(inputLine);
+            }
+            String json = response.toString();
+            HoraFecha horaFecha = new Gson().fromJson(json, HoraFecha.class);;
+            horaFechaServidor = horaFecha.getDatetime();
+            guardarDatos();
 
+        }catch (Exception e){
+            Log.e("Error en consumo",e.getMessage());
+            Toast.makeText(this, "No tienes acceso a internet, por favor conectese a una", Toast.LENGTH_SHORT).show();
+        }
+    }*/
 
     private void guardarDatos() {
         try {
             mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("caso").setValue(caso);
             mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("latitud").setValue(String.valueOf(location.getLatitude()));
             mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("logitud").setValue(String.valueOf(location.getLongitude()));
-            mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("fechaDatos").setValue(horaFecheServidor);
+            mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("fechaDatos").setValue(horaFechaServidor);
             startActivity(new Intent(Preguntas.this, Resultados.class));
             finish();
         }catch (Exception ignored){
@@ -229,22 +245,56 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
                 obtenerUbicacion();
             });
 
-            task.addOnFailureListener(this, new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    if (e instanceof ResolvableApiException) {
-                        try {
+            task.addOnFailureListener(this, e -> {
+                if (e instanceof ResolvableApiException) {
+                    try {
 
-                            ResolvableApiException resolvable = (ResolvableApiException) e;
-                            resolvable.startResolutionForResult(Preguntas.this,
-                                    REQUEST_CHECK_SETTINGS);
-                        } catch (IntentSender.SendIntentException ignored) {
-                        }
+                        ResolvableApiException resolvable = (ResolvableApiException) e;
+                        resolvable.startResolutionForResult(Preguntas.this,
+                                REQUEST_CHECK_SETTINGS);
+                    } catch (IntentSender.SendIntentException ignored1) {
                     }
                 }
             });
         }
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case LOCATION_REQUEST:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    obtenerUbicacion();
+                }
+
+                break;
+        }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CHECK_SETTINGS) {
+            switch (resultCode) {
+                case Activity.RESULT_OK:
+                {
+                    obtenerUbicacion();
+                    break;
+                }
+                case Activity.RESULT_CANCELED:
+                {
+                    Toast.makeText(this, R.string.activar_gps, Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+            }
+        }
     }
 
     @Override

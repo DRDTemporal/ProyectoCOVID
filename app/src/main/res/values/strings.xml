@@ -88,6 +88,8 @@
     <string name="inicioSesion">Inicio de sesion</string>
     <string name="error_ubicacion">No se ha podido obtener la ubicación. Por favor actiive el GPS.</string>
     <string name="error_servidor_hora">Error al obtener la hora del servidor. Por favor revise su conexión.</string>
+    <string name="activar_gps">Por favor active su GPS y vuelva a hacer la enquesta.</string>
+    <string name="reintente_encuesta">Por favor reintente hacer la encuesta.</string>
 
 
 </resources>
