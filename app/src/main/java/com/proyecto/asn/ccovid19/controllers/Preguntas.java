@@ -315,7 +315,6 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
                         break;
 
                 }
-
                 break;
 
 
