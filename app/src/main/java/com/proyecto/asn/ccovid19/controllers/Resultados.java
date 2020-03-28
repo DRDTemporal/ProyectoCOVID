@@ -95,6 +95,13 @@ public class Resultados extends AppCompatActivity implements View.OnClickListene
 
     }
 
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
+
     private void reiniciarEncuesta() {
         mDatabase  = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("caso").setValue(0);

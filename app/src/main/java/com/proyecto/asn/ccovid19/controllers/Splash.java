@@ -230,7 +230,7 @@ public class Splash extends AppCompatActivity {
     private void personaIdentificada(){
         final FirebaseUser currentUser = mAuth.getCurrentUser();
         DatabaseReference personas = mDatabase.child("persona");
-        personas.addValueEventListener(new ValueEventListener() {
+        personas.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

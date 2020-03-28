@@ -252,7 +252,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     private void personaIdentificada(){
         final FirebaseUser currentUser = mAuth.getCurrentUser();
         DatabaseReference personas = mDatabase.child("persona");
-        personas.addValueEventListener(new ValueEventListener() {
+        personas.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                     assert currentUser != null;
                     if (Objects.equals(child.getKey(), mAuth.getUid())){
                         if (persona.getCaso() != 0 ){
-                            Preguntas.caso = persona.getCaso();
+                                Preguntas.caso = persona.getCaso();
                             startActivity(new Intent(MainActivity.this,Resultados.class));
                             finish();
                         }else{
