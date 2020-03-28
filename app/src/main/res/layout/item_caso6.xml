@@ -67,21 +67,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="699dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/rcaso6" />
+                    app:srcCompat="@drawable/c61" />
 
                 <ImageView
                     android:id="@+id/imageView10"
                     android:layout_width="wrap_content"
                     android:layout_height="813dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/rcaso61" />
+                    app:srcCompat="@drawable/c62" />
 
                 <ImageView
                     android:id="@+id/imageView11"
                     android:layout_width="wrap_content"
                     android:layout_height="825dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/rcaso62" />
+                    app:srcCompat="@drawable/c63" />
 
 
             </LinearLayout>

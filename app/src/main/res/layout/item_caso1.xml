@@ -62,8 +62,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="618dp"
-                    android:src="@drawable/rcsaso1"
-                    app:srcCompat="@drawable/rcsaso1"></ImageView>
+                    android:src="@drawable/c1"/>
 
 
             </LinearLayout>

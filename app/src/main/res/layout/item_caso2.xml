@@ -62,8 +62,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="670dp"
-                    android:src="@drawable/rcaso2"
-                    app:srcCompat="@drawable/rcaso2"></ImageView>
+                    android:src="@drawable/c2"/>
 
 
             </LinearLayout>

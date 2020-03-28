@@ -66,20 +66,19 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="871dp"
-                    android:src="@drawable/rcaso_41"
-                    tools:srcCompat="@drawable/rcaso_41"></ImageView>
+                    android:src="@drawable/c41" />
 
                 <ImageView
                     android:id="@+id/imageView5"
                     android:layout_width="match_parent"
                     android:layout_height="825dp"
-                    app:srcCompat="@drawable/rcaso_4" />
+                    app:srcCompat="@drawable/c42" />
 
                 <ImageView
                     android:id="@+id/imageView6"
                     android:layout_width="match_parent"
                     android:layout_height="814dp"
-                    app:srcCompat="@drawable/rcaso_42" />
+                    app:srcCompat="@drawable/c43" />
 
 
             </LinearLayout>
