@@ -88,6 +88,7 @@
     <string name="inicioSesion">Inicio de sesion</string>
     <string name="error_ubicacion">No se ha podido obtener la ubicación. Por favor actiive el GPS.</string>
     <string name="error_servidor_hora">Error al obtener la hora del servidor. Por favor revise su conexión.</string>
+    <string name="desarrollado">Esta aplicación fue desarrollada por: \n*David Alejandro Popayán \n*Rodrigo Alejandro Guspian</string>
 
 
 </resources>
