@@ -245,6 +245,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
                 if (e instanceof ResolvableApiException) {
                     try {
 
+                        showProgressBar();
                         ResolvableApiException resolvable = (ResolvableApiException) e;
                         resolvable.startResolutionForResult(Preguntas.this,
                                 REQUEST_CHECK_SETTINGS);
