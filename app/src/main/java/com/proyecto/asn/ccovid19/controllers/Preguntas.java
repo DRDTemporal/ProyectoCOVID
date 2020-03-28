@@ -264,7 +264,6 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 obtenerUbicacion();
             }else{
-                hideProgressBar();
                 Toast.makeText(this, R.string.permiso_gps, Toast.LENGTH_SHORT).show();
             }
         }
