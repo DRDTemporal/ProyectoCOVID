@@ -226,7 +226,6 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
 
 
         }catch (Exception ignored){
-            hideProgressBar();
             LocationRequest locationRequest = LocationRequest.create();
             locationRequest.setInterval(10000);
             locationRequest.setFastestInterval(5000);
@@ -272,6 +271,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        showProgressBar();
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CHECK_SETTINGS) {
             switch (resultCode) {
