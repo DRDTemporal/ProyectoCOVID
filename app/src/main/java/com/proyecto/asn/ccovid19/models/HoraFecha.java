@@ -1,21 +1,20 @@
 package com.proyecto.asn.ccovid19.models;
 
 public class HoraFecha {
-    private  String dateTime ="";
+    private  String datetime ="";
 
     public HoraFecha() {
     }
 
-    public HoraFecha(String dateTime) {
-        this.dateTime = dateTime;
+    public HoraFecha(String datetime) {
+        this.datetime = datetime;
     }
 
-    public String getDateTime() {
-        return dateTime;
+    public String getDatetime() {
+        return datetime;
     }
 
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
     }
-
 }

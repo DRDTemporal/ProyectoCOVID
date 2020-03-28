@@ -1,5 +1,37 @@
 package com.proyecto.asn.ccovid19.controllers;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentSender;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.proyecto.asn.ccovid19.R;
+import com.proyecto.asn.ccovid19.models.HoraFecha;
+import com.proyecto.asn.ccovid19.utilities.WorldTimeService;
+
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,45 +42,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.proyecto.asn.ccovid19.R;
-import com.proyecto.asn.ccovid19.models.HoraFecha;
-import com.proyecto.asn.ccovid19.models.Lugar;
-import com.proyecto.asn.ccovid19.utilities.CityService;
-import com.proyecto.asn.ccovid19.utilities.WorldTimeService;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-
-import static android.location.LocationManager.NETWORK_PROVIDER;
-import static com.proyecto.asn.ccovid19.utilities.Constants.LINK_API;
+import static com.proyecto.asn.ccovid19.utilities.Constants.LINK_API_WORLD_TIME;
 
 public class Preguntas extends AppCompatActivity implements View.OnClickListener {
     private static final int MY_LOCATION = 500;
+    protected static final int REQUEST_CHECK_SETTINGS = 0x1;
+
     LinearLayout primeraPregunta, SegundaPregunta,segundaPregunta2, TerceraPregunta, CuartaPregunta;
     Button btnSi, btnNo,btnSi2, btnNo2,btnSi21, btnNo21,btnSi3, btnNo3, btnSi4, btnNo4;
     DatabaseReference mDatabase;
@@ -129,25 +128,52 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
                 .setTitle(R.string.alerta_titulo);
 
         builder.setPositiveButton(R.string.aceptar, (dialog, id) -> {
-            startActivity(new Intent(Preguntas.this, Resultados.class));
-            obtenerHoraFechaServidor();
-            finish();
+            obtenerUbicacion();
         });
         builder.setNegativeButton(R.string.cancelar, (dialog, id) -> {
         });
-
         builder.setCancelable(true);
-
         builder.create();
         builder.show();
 
 
+    }
 
+
+    private void obtenerUbicacion() {
+        LocationManager locationManager;
+
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) ActivityCompat.requestPermissions
+                (this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, MY_LOCATION);
+        {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
+                    (this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                return;
+
+            }
+
+            try {
+                locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                Criteria criteria = new Criteria();
+
+                assert locationManager != null;
+                location = locationManager.getLastKnownLocation(Objects.requireNonNull(locationManager.getBestProvider(criteria, false)));
+                obtenerHoraFechaServidor();
+
+            } catch (Exception ex) {
+                Toast.makeText(this, R.string.error_ubicacion, Toast.LENGTH_SHORT).show();
+            }
+
+        }
     }
 
     private void obtenerHoraFechaServidor() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(LINK_API)
+                .baseUrl(LINK_API_WORLD_TIME)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -160,11 +186,11 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
                     Toast.makeText(Preguntas.this, R.string.error_servidor_hora, Toast.LENGTH_LONG).show();
                 }else {
                     if (response.body() != null) {
-
-                        horaFecheServidor = response.body().getDateTime();
+                        horaFecheServidor = response.body().getDatetime();
+                        guardarDatos();
                     } else {
                         Toast.makeText(Preguntas.this, R.string.error_servidor_hora, Toast.LENGTH_LONG).show();
-                        obtenerUbicacion();
+
                     }
                 }
             }
@@ -177,50 +203,47 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
     }
 
 
-    private void obtenerUbicacion() {
-        LocationManager locationManager;
-
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) ActivityCompat.requestPermissions
-                (this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, MY_LOCATION);
-        {
-
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                    != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
-                    (this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-                return;
-
-            }
-
-
-            try {
-                locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                Criteria criteria = new Criteria();
-
-                assert locationManager != null;
-                location = locationManager.getLastKnownLocation(Objects.requireNonNull(locationManager.getBestProvider(criteria, false)));
-                guardarDatos();
-
-            } catch (Exception ex) {
-                Toast.makeText(this, R.string.error_ubicacion, Toast.LENGTH_SHORT).show();
-            }
-
-
-
-
-
-        }
-    }
 
 
 
     private void guardarDatos() {
-        mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("caso").setValue(caso);
-        mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("latitud").setValue(String.valueOf(location.getLatitude()));
-        mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("logitud").setValue(String.valueOf(location.getLongitude()));
-        mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("fechaActua").setValue(horaFecheServidor);
+        try {
+            mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("caso").setValue(caso);
+            mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("latitud").setValue(String.valueOf(location.getLatitude()));
+            mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("logitud").setValue(String.valueOf(location.getLongitude()));
+            mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("fechaDatos").setValue(horaFecheServidor);
+            startActivity(new Intent(Preguntas.this, Resultados.class));
+            finish();
+        }catch (Exception ignored){
+            LocationRequest locationRequest = LocationRequest.create();
+            locationRequest.setInterval(10000);
+            locationRequest.setFastestInterval(5000);
+            locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+            LocationSettingsRequest.Builder builder;
+            builder = new LocationSettingsRequest.Builder()
+                    .addLocationRequest(locationRequest);
+            Task<LocationSettingsResponse> task =
+                    LocationServices.getSettingsClient(this).checkLocationSettings(builder.build());
+
+            task.addOnSuccessListener(this, locationSettingsResponse -> {
+                obtenerUbicacion();
+            });
+
+            task.addOnFailureListener(this, new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    if (e instanceof ResolvableApiException) {
+                        try {
+
+                            ResolvableApiException resolvable = (ResolvableApiException) e;
+                            resolvable.startResolutionForResult(Preguntas.this,
+                                    REQUEST_CHECK_SETTINGS);
+                        } catch (IntentSender.SendIntentException ignored) {
+                        }
+                    }
+                }
+            });
+        }
 
     }
 
