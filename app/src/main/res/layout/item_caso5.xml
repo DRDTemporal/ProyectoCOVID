@@ -63,14 +63,12 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="1271dp"
-                    android:src="@drawable/rcaso5"
-                    app:srcCompat="@drawable/rcaso5"></ImageView>
+                    android:src="@drawable/c51" />
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="826dp"
-                    android:src="@drawable/caso51"
-                    app:srcCompat="@drawable/rcaso51">
+                    android:src="@drawable/c52">
 
                 </ImageView>
 
@@ -78,7 +76,7 @@
                     android:id="@+id/imageView7"
                     android:layout_width="match_parent"
                     android:layout_height="824dp"
-                    app:srcCompat="@drawable/rcaso52" />
+                    app:srcCompat="@drawable/c53" />
 
 
             </LinearLayout>

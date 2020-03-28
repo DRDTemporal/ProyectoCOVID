@@ -193,7 +193,7 @@ public class Splash extends AppCompatActivity {
                         updateUI(currentUser);
                     }
                 };
-                new Timer().schedule(timerTask,1000);
+                new Timer().schedule(timerTask,3000);
 
             }
 
@@ -207,7 +207,7 @@ public class Splash extends AppCompatActivity {
                     updateUI(currentUser);
                 }
             };
-            new Timer().schedule(timerTask,1000);
+            new Timer().schedule(timerTask,3000);
         }
 
 
