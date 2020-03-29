@@ -5,13 +5,10 @@
 
     <solid android:color="@color/gris"></solid>
 
-    <stroke
-        android:width="3dp"
-        android:color="@color/gris" >
-    </stroke>
 
     <!-- The radius makes the corners rounded -->
     <corners
+
         android:radius="5dp"   >
     </corners>
 
