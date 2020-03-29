@@ -234,9 +234,9 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
     private void guardarDatos() {
         try {
             mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("caso").setValue(caso);
+            mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("fechaDatos").setValue(horaFechaServidor);
             mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("latitud").setValue(String.valueOf(location.getLatitude()));
             mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("longitud").setValue(String.valueOf(location.getLongitude()));
-            mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid())).child("fechaDatos").setValue(horaFechaServidor);
             if(solo1Vez==0){
                 solo1Vez=1;
                 startActivity(new Intent(Preguntas.this, Resultados.class));
