@@ -2,7 +2,7 @@ package com.proyecto.asn.ccovid19.models;
 
 import java.util.List;
 
-public class Lugar {
+public class   Lugar{
     private String departamento, municipio;
 
     public Lugar() {
