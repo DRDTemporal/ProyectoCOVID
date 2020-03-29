@@ -127,9 +127,7 @@ public class Resultados extends AppCompatActivity implements View.OnClickListene
 
         });
 
-
         builder.setCancelable(true);
-
         builder.create();
         builder.show();
 

@@ -250,27 +250,20 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     }
 
     private void personaIdentificada(){
-        final FirebaseUser currentUser = mAuth.getCurrentUser();
-        DatabaseReference personas = mDatabase.child("persona");
-        personas.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference refPersona = mDatabase.child("persona").child(Objects.requireNonNull(mAuth.getUid()));
+        refPersona.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot child: dataSnapshot.getChildren()){
-                    persona =child.getValue(Persona.class);
-                    assert persona != null;
-                    assert currentUser != null;
-                    if (Objects.equals(child.getKey(), mAuth.getUid())){
-                        if (persona.getCaso() != 0 ){
-                                Preguntas.caso = persona.getCaso();
-                            startActivity(new Intent(MainActivity.this,Resultados.class));
-                            finish();
-                        }else{
-                            startActivity(new Intent(MainActivity.this,Preguntas.class));
-                            finish();
-                        }
-                        break;
-                    }
+                persona =dataSnapshot.getValue(Persona.class);
+                assert persona != null;
+                if (persona.getCaso() != 0 ){
+                    Preguntas.caso = persona.getCaso();
+                    startActivity(new Intent(MainActivity.this,Resultados.class));
+                    finish();
+                }else{
+                    startActivity( new Intent(MainActivity.this,Preguntas.class));
+                    finish();
                 }
 
 
@@ -281,6 +274,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
             }
         });
+
 
     }
 
