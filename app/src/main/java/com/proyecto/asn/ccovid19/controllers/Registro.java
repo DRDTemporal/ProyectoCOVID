@@ -1,14 +1,8 @@
 package com.proyecto.asn.ccovid19.controllers;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import io.paperdb.Paper;
-
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -27,8 +21,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 import com.proyecto.asn.ccovid19.R;
 import com.proyecto.asn.ccovid19.models.Lugar;
 import com.proyecto.asn.ccovid19.models.Persona;
@@ -37,7 +35,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static android.view.View.*;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import static android.view.View.OnClickListener;
 import static com.proyecto.asn.ccovid19.utilities.Constants.TIPO_ID;
 
 public class Registro extends AppCompatActivity implements OnClickListener, OnItemSelectedListener {
@@ -102,12 +103,28 @@ public class Registro extends AppCompatActivity implements OnClickListener, OnIt
     }
 
     private void inputDataToSpinners(){
-        Paper.init(this);
-        lugares = Paper.book().read("lugares");
-        anadirDepartamentos();
-        anadirTipoID();
-        municipios.add(getString(R.string.select_municipio));
-        spMunicipio.setAdapter(obtenerAdaptador(municipios));
+        DatabaseReference refMunicipios = databaseReference.child("municipios");
+
+        refMunicipios.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                GenericTypeIndicator<ArrayList<Lugar>> t = new GenericTypeIndicator<ArrayList<Lugar>>() {};
+                lugares = dataSnapshot.getValue(t);
+                anadirDepartamentos();
+                anadirTipoID();
+                municipios.add(getString(R.string.select_municipio));
+                spMunicipio.setAdapter(obtenerAdaptador(municipios));
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
 
     }
 
