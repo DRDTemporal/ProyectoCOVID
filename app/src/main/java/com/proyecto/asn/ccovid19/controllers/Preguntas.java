@@ -144,7 +144,7 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
             try {
                 locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                 assert locationManager != null;
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, new LocationListener() {
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 2000, 10, new LocationListener() {
                     @Override
                     public void onLocationChanged(Location location) { }
 
