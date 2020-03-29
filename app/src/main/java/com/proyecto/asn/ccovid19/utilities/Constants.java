@@ -1,10 +1,6 @@
 package com.proyecto.asn.ccovid19.utilities;
 
 public class Constants {
-    public static final String LINK_API = "https://www.datos.gov.co/";
-    public static final String LINK_LUGARES = "resource/xdk5-pm3f.json";
-    public static final  String LINK_API_WORLD_TIME = "https://worldtimeapi.org/api/";
-    public static final  String LINK_HORA_COLOMBIANA = "timezone/America/Bogota";
 
     public static  final  String[] TIPO_ID = {
             "Seleccione un tipo de identificación...",
@@ -17,17 +13,6 @@ public class Constants {
             "AS - Adulto sin identidad",
     };
 
-    public  static  final  String [] DATOS_PERSONA = {
-            "ID",
-            "Tipo ID",
-            "Nombres",
-            "Apellidos",
-            "Teléfono",
-            "Departamento",
-            "Municipio",
-            "Edad",
-            "Email",
-            "Dirección",
-            "Caso"
-    };
+
+
 }

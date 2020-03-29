@@ -31,23 +31,24 @@
             android:id="@+id/btnVolverEncuesta"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textColor="@color/blanco"
-            android:background="@drawable/boton"
             android:layout_margin="8dp"
-            android:text="@string/volver_encuesta" />
+            android:layout_weight="1"
+            android:background="@drawable/boton"
+            android:text="@string/volver_encuesta"
+            android:textColor="@color/blanco" />
 
 
         <Button
             android:id="@+id/btnCerrarSesion"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/boton"
-            android:textColor="@color/blanco"
-            android:layout_weight="1"
             android:layout_margin="8dp"
-            android:text="@string/cerrar_sesion" />
+            android:layout_weight="1"
+            android:background="@drawable/boton"
+            android:text="@string/cerrar_sesion"
+            android:textColor="@color/blanco" />
     </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/Contenedor"
@@ -56,14 +57,11 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="1.0" >
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
 
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/linearLayout3"
