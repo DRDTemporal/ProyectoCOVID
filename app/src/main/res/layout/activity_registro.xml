@@ -51,7 +51,7 @@
                 android:hint="@string/correo_electronico"
                 android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textColorHint="@android:color/background_light" />
 
             <EditText
@@ -62,7 +62,7 @@
                 android:hint="@string/contrasena"
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textColorHint="@android:color/background_light" />
 
             <EditText
@@ -73,7 +73,7 @@
                 android:hint="@string/confirmar_contrasena"
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textColorHint="@android:color/background_light" />
 
             <EditText
@@ -83,7 +83,7 @@
                 android:layout_margin="16dp"
                 android:hint="@string/nombres"
                 android:importantForAutofill="no"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textColorHint="@android:color/background_light" />
 
             <EditText
@@ -93,7 +93,7 @@
                 android:layout_margin="16dp"
                 android:hint="@string/apellidos"
                 android:importantForAutofill="no"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textColorHint="@android:color/background_light" />
 
             <EditText
@@ -104,7 +104,7 @@
                 android:hint="@string/Edad"
                 android:importantForAutofill="no"
                 android:inputType="number"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textColorHint="@android:color/background_light" />
 
 
@@ -125,7 +125,7 @@
                 android:hint="@string/Identificacion"
                 android:importantForAutofill="no"
                 android:inputType="number"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textColorHint="@android:color/background_light" />
 
             <Spinner
@@ -154,7 +154,7 @@
                 android:hint="@string/direccion"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textColorHint="@android:color/background_light" />
 
             <EditText
@@ -165,7 +165,7 @@
                 android:hint="@string/telefono"
                 android:importantForAutofill="no"
                 android:inputType="number"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textColorHint="@android:color/background_light" />
 
             <LinearLayout

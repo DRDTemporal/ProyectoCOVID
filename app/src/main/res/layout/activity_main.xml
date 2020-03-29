@@ -9,205 +9,195 @@
     tools:context=".controllers.MainActivity">
 
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="320dp"
-        android:layout_height="400dp"
-        app:cardCornerRadius="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/txtMensaje"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/imageView8">
+
+
+        <RelativeLayout
+            android:id="@+id/relative1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gothicb"
+                android:text="@string/inicioSesion"
+                android:textColor="@color/azul"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relative2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:layout_weight="2"
+            android:gravity="center">
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="0dp"
+                android:gravity="center">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/ingrese_correo_electronico"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="5dp"
+                    android:textColor="@color/negro"
+                    android:textSize="15sp">
+
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relative3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_weight="3"
+            android:gravity="center">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="0dp"
+                android:gravity="center">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtContrasena"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/gothic"
+                    android:hint="@string/ingrese_contrasena"
+                    android:inputType="textPassword"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="5dp"
+                    android:textColor="@color/negro"
+                    android:textSize="15sp">
+
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/relative4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/btnRegistrar"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/boton"
+                android:fontFamily="@font/gothicb"
+                android:text="@string/crear_cuenta"
+                android:textAllCaps="false"
+                android:textColor="@color/blanco" />
 
-            <RelativeLayout
-                android:id="@+id/relative1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="60dp"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/gothicb"
-                    android:text="@string/inicioSesion"
-                    android:textColor="@color/azul"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/relative2"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:layout_weight="2"
-                android:gravity="center">
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="0dp"
-                    android:gravity="center">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/txtEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="@string/ingrese_correo_electronico"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="5dp"
-                        android:textColor="@color/negro"
-                        android:textSize="15sp">
-
-
-                    </com.google.android.material.textfield.TextInputEditText>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/relative3"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_weight="3"
-                android:gravity="center">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="0dp"
-                    android:gravity="center">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/txtContrasena"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/gothic"
-                        android:hint="@string/ingrese_contrasena"
-                        android:inputType="textPassword"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="5dp"
-                        android:textColor="@color/negro"
-                        android:textSize="15sp">
-
-
-                    </com.google.android.material.textfield.TextInputEditText>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-            </RelativeLayout>
-
-            <LinearLayout
-                android:id="@+id/relative4"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:layout_weight="4"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btnRegistrar"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="25dp"
-                    android:background="@drawable/boton"
-                    android:fontFamily="@font/gothicb"
-                    android:text="@string/crear_cuenta"
-                    android:textAllCaps="false"
-                    android:textColor="@color/blanco" />
-
-                <Button
-                    android:id="@+id/btnLogin"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/boton"
-                    android:fontFamily="@font/gothicb"
-                    android:text="@string/inicioSesion"
-                    android:textAllCaps="false"
-                    android:textColor="@color/blanco" />
-
-            </LinearLayout>
-
-            <RelativeLayout
-                android:id="@+id/relative5"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:layout_weight="5"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/txtOlvidoContrasena"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="70dp"
-                    android:layout_marginEnd="70dp"
-                    android:fontFamily="@font/gothicb"
-                    android:gravity="center"
-                    android:text="@string/se_ha_olvidado_de_contrasena"
-                    android:textColor="@color/azulL" />
-
-
-            </RelativeLayout>
-
-            <LinearLayout
-                android:id="@+id/relative6"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center">
-
-                <ProgressBar
-                    android:id="@+id/pbLogin"
-                    style="?android:attr/progressBarStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true" />
-
-
-            </LinearLayout>
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boton"
+                android:fontFamily="@font/gothicb"
+                android:text="@string/inicioSesion"
+                android:textAllCaps="false"
+                android:textColor="@color/blanco" />
 
         </LinearLayout>
 
+        <RelativeLayout
+            android:id="@+id/relative5"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_weight="5"
+            android:gravity="center">
 
-    </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/txtOlvidoContrasena"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="70dp"
+                android:fontFamily="@font/gothicb"
+                android:gravity="center"
+                android:text="@string/se_ha_olvidado_de_contrasena"
+                android:textColor="@color/azulL" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/relative6"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center">
+
+            <ProgressBar
+                android:id="@+id/pbLogin"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 
     <TextView
@@ -223,20 +213,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.287" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <ImageView
+        android:id="@+id/imageView8"
         android:layout_width="175dp"
         android:layout_height="116dp"
+        android:layout_marginTop="52dp"
         android:background="@drawable/logoplay"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
