@@ -158,6 +158,26 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
                     public void onProviderDisabled(String provider) { }
                 });
                 location = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+
+                if(location != null){
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, new LocationListener() {
+                        @Override
+                        public void onLocationChanged(Location location) { }
+
+                        @Override
+                        public void onStatusChanged(String provider, int status, Bundle extras) { }
+
+                        @Override
+                        public void onProviderEnabled(String provider) { }
+
+                        @Override
+                        public void onProviderDisabled(String provider) { }
+                    });
+                    location = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+                    if(location != null){
+                        obtenerHoraDispositivo();
+                    }
+                }
                 obtenerHoraDispositivo();
 
             } catch (Exception ex) {
