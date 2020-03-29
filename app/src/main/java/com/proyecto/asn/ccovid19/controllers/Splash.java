@@ -147,72 +147,15 @@ public class Splash extends AppCompatActivity {
     }
 
     private void animationSplash(){
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            try {
-
-                Animator animator = ViewAnimationUtils.createCircularReveal(imageView,0,imageView.getWidth(),0,imageView.getHeight()*1.5f);
-                final Animator animator1 = ViewAnimationUtils.createCircularReveal(imageView,imageView.getWidth()/2,imageView.getHeight()/2,imageView.getHeight()*1.5f,0);
-                animator.setDuration(800);
-                animator1.setDuration(800);
-                animator.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {
-                        super.onAnimationStart(animation);
-                        imageView.setVisibility(View.VISIBLE);
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        animator1.start();
-                    }
-                });
-
-                animator1.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {
-                        super.onAnimationStart(animation);
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        imageView.setVisibility(View.INVISIBLE);
-                        super.onAnimationEnd(animation);
-
-                        FirebaseUser currentUser = mAuth.getCurrentUser();
-                        updateUI(currentUser);
-                    }
-                });
-
-                animator.start();
-
-
-            }catch (Exception e){
-
-                TimerTask timerTask = new TimerTask() {
-                    @Override
-                    public void run() {
-                        imageView.setVisibility(View.VISIBLE);
-                        FirebaseUser currentUser = mAuth.getCurrentUser();
-                        updateUI(currentUser);
-                    }
-                };
-                new Timer().schedule(timerTask,1000);
-
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                imageView.setVisibility(View.VISIBLE);
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                updateUI(currentUser);
             }
-
-
-        }else {
-            TimerTask timerTask = new TimerTask() {
-                @Override
-                public void run() {
-                    imageView.setVisibility(View.VISIBLE);
-                    FirebaseUser currentUser = mAuth.getCurrentUser();
-                    updateUI(currentUser);
-                }
-            };
-            new Timer().schedule(timerTask,1000);
-        }
+        };
+        new Timer().schedule(timerTask,3000);
 
 
     }
