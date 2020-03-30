@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     private void hideProgressDialog() {
         findViewById(R.id.pbLogin).setVisibility(INVISIBLE);
         btnLogin.setEnabled(true);
-            btnRegistrar.setEnabled(true);
+        btnRegistrar.setEnabled(true);
         txtEmail.setEnabled(true);
         txtContrasena.setEnabled(true);
     }
@@ -239,6 +239,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             startActivity(intent);
         });
         builder.setNegativeButton(R.string.cancelar, (dialog, id) -> {
+        });
+
+        builder.setNeutralButton(R.string.masInformacion, (dialog, id) -> {
+            Intent intent = new Intent(MainActivity.this, PoliticasDePrivacidad.class);
+            startActivity(intent);
         });
 
         builder.setCancelable(true);
