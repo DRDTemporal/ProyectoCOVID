@@ -42,27 +42,26 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/imgCaso31"
                     android:layout_width="match_parent"
-                    android:layout_height="828dp"
-                    android:src="@drawable/c31"/>
+                    android:layout_height="832dp"
+                    android:layout_margin="4dp" />
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/imgCaso32"
                     android:layout_width="match_parent"
                     android:layout_height="831dp"
-                    app:srcCompat="@drawable/c32" />
+                    android:layout_margin="4dp" />
 
                 <ImageView
-                    android:id="@+id/imageView4"
+                    android:id="@+id/imgCaso33"
                     android:layout_width="match_parent"
                     android:layout_height="851dp"
-                    app:srcCompat="@drawable/c33" />
+                    android:layout_margin="4dp" />
 
 
             </LinearLayout>

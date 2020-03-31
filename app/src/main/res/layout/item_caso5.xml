@@ -47,22 +47,27 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/imgCaso51"
                     android:layout_width="match_parent"
-                    android:layout_height="1271dp"
-                    android:src="@drawable/c51" />
+                    android:layout_height="1270dp"
+                    android:layout_margin="4dp"
+                     />
 
                 <ImageView
+                    android:id="@+id/imgCaso52"
                     android:layout_width="match_parent"
                     android:layout_height="826dp"
-                    android:src="@drawable/c52">
+                    android:layout_margin="4dp"
+                    >
 
                 </ImageView>
 
                 <ImageView
-                    android:id="@+id/imageView7"
+                    android:id="@+id/imgCaso53"
                     android:layout_width="match_parent"
                     android:layout_height="824dp"
-                    app:srcCompat="@drawable/c53" />
+                    android:layout_margin="4dp"
+                     />
 
 
             </LinearLayout>

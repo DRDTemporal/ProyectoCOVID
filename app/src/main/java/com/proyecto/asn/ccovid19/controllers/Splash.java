@@ -1,10 +1,14 @@
 package com.proyecto.asn.ccovid19.controllers;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -14,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.proyecto.asn.ccovid19.R;
 import com.proyecto.asn.ccovid19.models.Persona;
 
@@ -32,6 +37,7 @@ public class Splash extends AppCompatActivity {
     private FirebaseAuth mAuth;
     Persona persona;
     private DatabaseReference mDatabase;
+    private ProgressBar pbSplash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +52,8 @@ public class Splash extends AppCompatActivity {
 
     private void inizialite(){
         imageView = findViewById(R.id.imageView);
-        imageView.setVisibility(View.VISIBLE);
+        pbSplash =findViewById(R.id.pbSplash);
+        pbSplash.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
         bandera= true;
         valor=0;
     }
@@ -61,16 +68,28 @@ public class Splash extends AppCompatActivity {
 
     private void leerLugares() {
         DatabaseReference municipios = mDatabase.child("municipios");
+        DatabaseReference imagenes = mDatabase.child("imagenes");
 
         municipios.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                iniciarSplash();
+                imagenes.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        iniciarSplash();
+                        pbSplash.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(Splash.this, R.string.error_conexion, Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Toast.makeText(Splash.this, R.string.error_conexion, Toast.LENGTH_SHORT).show();
             }
         });
 

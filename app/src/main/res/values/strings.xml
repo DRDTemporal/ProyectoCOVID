@@ -99,5 +99,6 @@
     <string name="informaci_n">Información</string>
     <string name="creditos">Creditos</string>
     <string name="lema">¡Cauca, ante el COVID-19 estamos para ti!</string>
+    <string name="error_conexion">Error en conexión, por favor revise su internet.</string>
 
 </resources>

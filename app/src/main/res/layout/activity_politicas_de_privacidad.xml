@@ -32,4 +32,12 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/imgSalir"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
