@@ -13,6 +13,7 @@ public class Constants {
             "AS - Adulto sin identidad",
     };
 
+    public static final String PDF_NAME = "politicas.pdf";
 
 
 }

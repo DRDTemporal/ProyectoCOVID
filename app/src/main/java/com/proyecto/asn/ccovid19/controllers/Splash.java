@@ -1,10 +1,13 @@
 package com.proyecto.asn.ccovid19.controllers;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
@@ -34,6 +37,7 @@ public class Splash extends AppCompatActivity {
     private FirebaseAuth mAuth;
     Persona persona;
     private DatabaseReference mDatabase;
+    private ProgressBar pbSplash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +52,8 @@ public class Splash extends AppCompatActivity {
 
     private void inizialite(){
         imageView = findViewById(R.id.imageView);
-        imageView.setVisibility(View.VISIBLE);
+        pbSplash =findViewById(R.id.pbSplash);
+        pbSplash.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
         bandera= true;
         valor=0;
     }
@@ -72,6 +77,7 @@ public class Splash extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         iniciarSplash();
+                        pbSplash.setVisibility(View.VISIBLE);
                     }
 
                     @Override
