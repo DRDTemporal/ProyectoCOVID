@@ -23,7 +23,8 @@ public class PoliticasDePrivacidad extends AppCompatActivity {
     private void cargarPdf() {
         pdfView = findViewById(R.id.pdf);
         //PDF EN RAW MANDAR A FIREBASE PARA MANDARLO POR URL
-        //pdfView.fromUri("");
+            
+
 
     }
 }
