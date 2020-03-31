@@ -63,10 +63,11 @@
     <string name="pregunta3">¿Ha estado por fuera de país en los últimos 14 dias o ha tenido contacto estrecho con caso confirmado de COVID-19?</string>
     <string name="cancelar">Cancelar</string>
     <string name="aceptar">Aceptar</string>
+    <string name="masInformacion">Leer más</string>
 
 
     <string name="avisoInicial">Aviso INICIAL \n “Esta aplicación NO HACE UN DIAGNÓSTICO de Infección por COVID 19 u otras patologías. Se usará para guiarlo/a según los datos que usted  va a suministrar y en caso de ser necesario brindarle acompañamiento”</string>
-    <string name="condicionesLegales">Da su consentimiento expreso e informado para llevar a cabo el Tratamiento de sus datos personales por parte del personal relacionado con la atención y recepción de información en el departamento del Cauca frente a casos potenciales de COVID-19, el cual NO tiene ningún fin comercial y será de uso exclusivo en el campo de la salud sin fines lucrativos.</string>
+    <string name="condicionesLegales">Da su consentimiento expreso e informado para llevar a cabo el tratamiento de sus datos personales, acceso a información clínica, resultados de laboratorio y seguimiento, por parte del personal relacionado con la atención y recepción de información en el Departamento del Cauca frente a casos sospechosos de COVID-19. Sus datos serán de uso exclusivo para el campo de la salud con fines de investigación en situación de pandemia, sin fines de lucro o comerciales y no genera ninguna remuneración económica.</string>
     <string name="exportar">Exportar</string>
     <string name="mensaje_exportar">Se va a crear un archivo CSV en la carpeta en CCovid-19 con los datos de todos los usuarios registrados.</string>
     <string name="error_crear_archivo">No se ha podido crear el archivo</string>

@@ -66,8 +66,6 @@ public class Preguntas extends AppCompatActivity implements View.OnClickListener
         inicializarFirebase();
         /*StrictMode.ThreadPolicy old = StrictMode.getThreadPolicy();
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder(old).permitNetwork().build());*/
-
-
     }
 
     private void inicializar() {
